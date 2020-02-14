@@ -29,6 +29,10 @@
         <name>StaticResource</name>
     </types>-->
     <types>
+        <members>Calculator_Result__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
         <members>Calculator</members>
         <members>DatatableDynamicRows</members>
         <members>Message</members>

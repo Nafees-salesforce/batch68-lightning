@@ -75,4 +75,4 @@
             <lightning:button label="Remove Row from First" variant="destructive" class="floatLeft;" onclick="{!c.remove}"/>
             <lightning:button label="Remove Row from Last" variant="destructive" class="floatRight;" onclick="{!c.remove}"/>
         </div>
-</aura:component>	
+</aura:component>

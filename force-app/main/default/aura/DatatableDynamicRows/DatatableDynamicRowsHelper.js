@@ -39,7 +39,7 @@
 
 				action.setParams({
 					inputMap : inputMap
-				});//
+				});
 
 				action.setCallback(this,function(response) {
 					var state = response.getState();
