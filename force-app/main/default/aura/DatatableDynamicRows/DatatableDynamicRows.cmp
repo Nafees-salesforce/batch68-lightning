@@ -1,0 +1,78 @@
+<aura:component controller="CalcuatorContrl">
+
+    <aura:attribute name="results" type="List"/>
+    <aura:attribute name="gridTitle" type="String" default="Rows"/>
+
+    <!-- Message Attributes -->
+    <aura:attribute name="severity" type="String"/>
+    <aura:attribute name="message" type="String"/>
+    <aura:attribute name="url" type="String"/>
+    <aura:attribute name="urlName" type="String"/>
+
+    <aura:attribute name="show" type="Boolean" default="true"/>
+
+    <div class="slds-text-heading_medium">{!v.gridTitle}</div> 
+        <aura:if isTrue="{!v.message}">
+            <c:Message severity="{!v.severity}" message="{!v.message}" url="{!v.url}" urlName="{!v.urlName}" show="{!v.show}"/>
+        </aura:if>       
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">   
+            <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Index">Index</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Number 1">Number 1</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Operator">Operator</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Number 2">Number 2</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Equals">Equals</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Result">Result</div>
+                </th>
+                <th class="" scope="col">
+                <div class="slds-truncate" title="Action">Action</div>
+                </th>
+            </tr>
+            </thead>             
+            <tbody>
+                <aura:iteration items="{!v.results}" var="row" indexVar="index">
+                    <tr class="slds-hint-parent">
+                        <th data-label="{!index}" scope="row">
+                            <div class="slds-truncate" title="{!index}">{!index}</div>
+                        </th>
+                        <td data-label="{!row.Number_1__c}">
+                            <div class="slds-truncate" title="{!row.Number_1__c}">{!row.Number_1__c}</div>
+                        </td>
+                        <td data-label="{!row.Operator__c}">
+                            <div class="slds-truncate" title="{!row.Operator__c}">{!row.Operator__c}</div>
+                        </td>
+                        <td data-label="{!row.Number_2__c}">
+                            <div class="slds-truncate" title="{!row.Number_2__c}">{!row.Number_2__c}</div>
+                        </td>
+                        <td data-label="=">
+                            <div class="slds-truncate" title="=">=</div>
+                        </td>
+                        <td data-label="{!row.Result__c}">
+                            <div class="slds-truncate" title="{!row.Result__c}">{!row.Result__c}</div>
+                        </td>
+                        <td data-label="Contact">
+                            <div class="slds-truncate" title="jrogers@cloudhub.com">
+                                <lightning:icon iconName="utility:clear" alternativeText="{!index+':'+row.Id}" variant="error" size=" xx-small" onclick="{!c.onClose}"/>
+                            </div>
+                        </td>
+                    </tr>     
+                </aura:iteration>              
+            </tbody>
+        </table>
+        <div>
+            <lightning:button label="Remove Row from First" variant="destructive" class="floatLeft;" onclick="{!c.remove}"/>
+            <lightning:button label="Remove Row from Last" variant="destructive" class="floatRight;" onclick="{!c.remove}"/>
+        </div>
+</aura:component>	

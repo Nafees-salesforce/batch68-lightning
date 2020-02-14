@@ -1,0 +1,18 @@
+.THIS.blueClr {
+    background-color:#EDF9EB;
+}
+.THIS .rClr {
+    color:red;
+}
+.THIS .bClr {
+    color:blue;
+}
+.THIS .gClr {
+    color:green;
+}
+.THIS .btnLeft {
+    float: left;
+}
+.THIS .btnRight {
+    float: right;
+}

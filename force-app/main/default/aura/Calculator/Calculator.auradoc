@@ -1,0 +1,6 @@
+<aura:documentation>
+	<aura:description>Simple Calculator Component to understand the Lightning Basics</aura:description>
+	<aura:example name="Calculator" ref="c:calculator" label="Calculator">
+		This Calculater component covers all the basic concepts of the Aura Components.
+	</aura:example>
+</aura:documentation>

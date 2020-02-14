@@ -1,0 +1,23 @@
+/*tag based style example
+    	div {
+        	margin-left:10px;
+        	color:blue;
+        	font-weight:bold;
+        }
+        
+        Style based on the id
+        #myDiv {
+        	margin-left:10px;
+        	color:blue;
+        	font-weight:bold;
+        }*/
+        
+        .myDivStyle {
+        	margin-left:10px;
+        	color:blue;
+        	font-weight:bold;
+        }
+        
+        .yellowBg {
+        	background-color:yellow;
+        }

@@ -1,0 +1,4 @@
+<design:component>
+    <design:attribute name="num1"/>
+    <design:attribute name="num2"/>
+</design:component>

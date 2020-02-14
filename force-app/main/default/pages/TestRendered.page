@@ -1,0 +1,37 @@
+<apex:page controller="TestrenderedContrl">
+    <apex:form >
+        <apex:pageBlock id="pbId">
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:selectList size="1" value="{!selVal}">
+                        <apex:selectOption itemLabel="1" itemValue="1"></apex:selectOption>
+                        <apex:selectOption itemLabel="2" itemValue="2"></apex:selectOption>
+                        <apex:selectOption itemLabel="3" itemValue="3"></apex:selectOption>
+                        <apex:selectOption itemLabel="4" itemValue="4"></apex:selectOption>
+                        <apex:actionSupport event="onchange" rerender="pbId"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection rendered="{!selVal = '1'}">
+                <apex:pageBlockSectionItem >
+                    1111111111111111111111111111111
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection rendered="{!selVal = '2'}">
+                <apex:pageBlockSectionItem >
+                    2222222222222222
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection rendered="{!selVal = '3'}">
+                <apex:pageBlockSectionItem >
+                    333333333333333333333333
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection rendered="{!selVal = '4'}">
+                <apex:pageBlockSectionItem >
+                   44444444444444444444
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,109 @@
+<!--
+    Actions -
+        * Clear - To clear all the results - done
+        * History - To show the existing results in the database - done
+        * Export - Download the results in Excel        
+    Imporvements -
+        * Show loading icon to know that some progress is happening in the server. 
+        * Don't allow duplicates while inserting
+-->
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="CalcuatorContrl">     
+    
+    <aura:attribute type="Integer" name="num1"/>
+    <aura:attribute type="Integer" name="num2"/>
+
+    <aura:attribute name="options" type="List" default="[
+    {'label': 'Add Row from First', 'value': 'first'},
+    {'label': 'Add Row from Last', 'value': 'last'}
+    ]"/>
+    <aura:attribute name="selOrder" type="String" default="last"/>   
+
+    <aura:attribute type="Integer" name="result"/>
+
+    <!--<aura:attribute type="List" name="results" default="[{'num1':20,'operator':'*','num2':30,'equals':'=','result':600}]"/>-->
+    <aura:attribute type="List" name="results"/>
+
+    <aura:attribute name="historyRows" type="List"/>
+
+    <!-- Message Attributes -->
+    <aura:attribute name="severity" type="String"/>
+    <aura:attribute name="message" type="String"/>
+    <aura:attribute name="url" type="String"/>
+    <aura:attribute name="urlName" type="String"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div class="slds-grid slds-gutters slds-p-top_xx-large blueClr">
+        <div class="slds-col slds-size_1-of-4">
+            <span></span>
+        </div>
+        <div class="slds-col slds-size_2-of-4">
+            <aura:if isTrue="{!v.message}">
+                <c:Message severity="{!v.severity}" message="{!v.message}" url="{!v.url}" urlName="{!v.urlName}"/>
+            </aura:if>
+            <fieldset class="slds-box">
+                <legend>
+                    <div class="slds-text-heading_medium">Actions</div>            
+                </legend>      
+                <lightning:layout class="btnRight">
+                    <lightning:layoutItem>
+                        <lightning:button label="History" variant="destructive" onclick="{!c.onHistory}" iconName="utility:clear"/>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem>
+                        &nbsp;&nbsp;&nbsp;
+                    </lightning:layoutItem>
+                    <lightning:layoutItem>
+                        <lightning:button label="Clear" variant="destructive" onclick="{!c.onClear}" iconName="utility:clear" disabled="{!v.results.length == 0}"/>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem>
+                        &nbsp;&nbsp;&nbsp;
+                    </lightning:layoutItem>
+                    <lightning:layoutItem>
+                        <lightning:button label="Save" variant="destructive" onclick="{!c.onSave}" iconName="utility:save" disabled="{!v.results.length == 0}"/>
+                    </lightning:layoutItem>                    
+                </lightning:layout>                      
+            </fieldset>
+            <fieldset class="slds-box">
+                <legend>
+                    <div class="slds-text-heading_medium">Calculator</div>            
+                </legend>
+                <lightning:input variant="label-inline" type="number" name="num1" label="Number1" placeholder="Please enter a number" value="{!v.num1}" onchange="{!c.doInit}" required="true" aura:id="num1"/>
+                <lightning:input variant="label-inline" type="number" name="num2" label="Number2" placeholder="Please enter a number" value="{!v.num2}" onchange="{!c.doInit}" required="true" aura:id="num2"/>
+                <lightning:input variant="label-inline" type="number" name="result" label="Result" disabled="true" value="{!v.result}" class="{!if(v.result gt 0, 'gClr', if(v.result lt 0,'rClr','bClr'))}"/> <br/>
+                <div>
+                    <lightning:button label="Add" variant="destructive" onclick="{!c.doInit}" iconName="utility:add"/>
+                    <lightning:button label="Substract" variant="destructive" onclick="{!c.doInit}" iconName="utility:dash"/>
+                    <lightning:button label="Multiply" variant="destructive" onclick="{!c.doInit}" iconName="utility:close"/>
+                    <lightning:button label="Divide" variant="destructive" onclick="{!c.doInit}" iconName="utility:magicwand"/>
+                </div>
+            </fieldset>
+        </div>
+        <div class="slds-col slds-size_1-of-4">
+            <span></span>
+        </div>
+    </div>
+    <div class="slds-grid slds-gutters slds-p-top_xx-large blueClr">
+        <div class="slds-col slds-size_1-of-4">
+            <span></span>
+        </div>
+        <div class="slds-col slds-size_2-of-4">
+            <aura:if isTrue="{!v.results.length > 0}">
+                <div>
+                    <lightning:radioGroup name="rowsGenerationOrder"
+                            label="Rows Generation Order"
+                            options="{! v.options }"
+                            value="{! v.selOrder }"
+                            type="radio"/>
+                </div>
+                <!--<c:DatatableDynamicRows results="{#v.results}"/>--> <!-- One way binding -->
+                <c:DatatableDynamicRows results="{!v.results}" gridTitle="Recent Results"/> <!-- Two way binding (Reflects the data from parent to child and child to parent) -->
+            </aura:if>            
+            <aura:if isTrue="{!v.historyRows.length > 0}">
+                <c:DatatableDynamicRows results="{!v.historyRows}" gridTitle="Calculation History"/>
+            </aura:if>
+        </div>    
+        <div class="slds-col slds-size_1-of-4">
+            <span></span>
+        </div>
+    </div>
+</aura:component>

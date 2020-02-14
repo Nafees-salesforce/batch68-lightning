@@ -1,0 +1,22 @@
+<aura:component>
+
+    <aura:attribute name="severity" type="String" default="error"/>
+    <aura:attribute name="message" type="String" default="Error"/>
+    <aura:attribute name="url" type="String"/>
+    <aura:attribute name="urlName" type="String"/>
+
+    <aura:attribute name="show" type="Boolean" default="true"/>
+
+    <aura:if isTrue="{!v.show}">
+        <div class="{!'slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_'+v.severity}" role="alert">
+            <h2>{!v.message} &nbsp;&nbsp;
+                <aura:if isTrue="{!v.url}">
+                    <a href="{!v.url}">{!v.urlName}</a>
+                </aura:if>
+            </h2>
+            <div class="slds-notify__close">            
+                <lightning:buttonIcon iconName="utility:close"  variant="bare-inverse" title="close" alternativeText="Close" size="medium" onclick="{!c.onClose}"/>
+            </div>
+        </div>
+    </aura:if>
+</aura:component>	

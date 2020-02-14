@@ -1,0 +1,40 @@
+<apex:page >
+    <!-- Internal Styles -->
+	<style>
+        /*tag based style example
+    	div {
+        	margin-left:10px;
+        	color:blue;
+        	font-weight:bold;
+        }
+        
+        Style based on the id
+        #myDiv {
+        	margin-left:10px;
+        	color:blue;
+        	font-weight:bold;
+        }
+        
+        .myDivStyle {
+        	margin-left:10px;
+        	color:blue;
+        	font-weight:bold;
+        }
+        
+        .yellowBg {
+        	background-color:yellow;
+        }*/
+        
+    </style>
+    <apex:stylesheet value="{!$Resource.vfStyle}"/>
+    <!-- Inline Styles 
+    <div style="margin-left:10px;color:blue;font-weight:bold;">
+        I am sample text.
+    </div> -->
+    <div id="myDiv" class="myDivStyle yellowBg">
+        I am sample text.
+    </div>
+    <div>
+        I am second line.
+    </div>
+</apex:page>
