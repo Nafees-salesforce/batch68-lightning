@@ -90,8 +90,9 @@
 		action.setParams({
 			inputMap : inputMap
 		});
-
+		cmp.set("v.showSpinner",true);
 		action.setCallback(this,function(response){
+			cmp.set("v.showSpinner",false);
 			var state = response.getState();
 			if(state === 'SUCCESS') {
 				var res = response.getReturnValue();
@@ -125,8 +126,9 @@
 		action.setParams({
 			inputMap : inputMap
 		});
-
+		cmp.set("v.showSpinner",true);
 		action.setCallback(this,function(response) {
+			cmp.set("v.showSpinner",false);
 			var state = response.getState();
 			if(state === "SUCCESS") {
 				var res = response.getReturnValue();

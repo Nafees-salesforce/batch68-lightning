@@ -1,0 +1,36 @@
+<aura:component>
+
+    <aura:attribute name="showExcelPopup" type="Boolean"/>
+    <aura:attribute name="options" type="List" default="[
+    {'label': 'Recent Results', 'value': 'recentResults'},
+    {'label': 'History', 'value': 'history'}
+    ]"/>
+    <aura:attribute name="value" type="List"/>   
+
+    <aura:attribute name="isRecentResults" type="Boolean" default="false"/>
+    <aura:attribute name="isHistoryResults" type="Boolean" default="false"/>
+
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+          <header class="slds-modal__header">            
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="{!c.onClose}">
+                <lightning:Icon iconName="utility:close" title="close" alternativeText="Close window" variant="inverse"/>
+                <span class="slds-assistive-text">Close</span>
+            </button>
+            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Export Settings</h2>           
+          </header>
+          <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <lightning:checkboxGroup name="Checkbox Group"
+                label="Checkbox Group"
+                options="{! v.options }"
+                value="{! v.value }"
+                onchange="{! c.handleChange }"/>
+          </div>
+          <footer class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" onclick="{!c.onClose}">Cancel</button>
+            <button class="slds-button slds-button_brand" onclick="{!c.onExport}">Export</button>
+          </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</aura:component>	

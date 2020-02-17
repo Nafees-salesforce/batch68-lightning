@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="to supply parameters from excel popup to the calculator component">
+    <aura:attribute name="isRecentResults" type="Boolean" default="false"/>
+    <aura:attribute name="isHistoryResults" type="Boolean" default="false"/>
+</aura:event>

@@ -10,5 +10,8 @@
 	},
 	onHistory : function(cmp, event, helper) {	
 		helper.handleOnHistory(cmp, event);
+	},
+	onExport : function(cmp, event) {
+		cmp.set("v.showExcelPopup",true);
 	}
 })

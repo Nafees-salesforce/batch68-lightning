@@ -31,7 +31,14 @@
     <aura:attribute name="url" type="String"/>
     <aura:attribute name="urlName" type="String"/>
 
+    <aura:attribute name="showSpinner" type="Boolean" default="false"/>
+    <aura:attribute name="showExcelPopup" type="Boolean" default="false"/>
+
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:if isTrue="{!v.showSpinner}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
 
     <div class="slds-grid slds-gutters slds-p-top_xx-large blueClr">
         <div class="slds-col slds-size_1-of-4">
@@ -47,7 +54,13 @@
                 </legend>      
                 <lightning:layout class="btnRight">
                     <lightning:layoutItem>
-                        <lightning:button label="History" variant="destructive" onclick="{!c.onHistory}" iconName="utility:clear"/>
+                        <lightning:button label="Export" variant="destructive" onclick="{!c.onExport}" iconName="utility:download"/>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem>
+                        &nbsp;&nbsp;&nbsp;
+                    </lightning:layoutItem>
+                    <lightning:layoutItem>
+                        <lightning:button label="History" variant="destructive" onclick="{!c.onHistory}" iconName="utility:notebook"/>
                     </lightning:layoutItem>
                     <lightning:layoutItem>
                         &nbsp;&nbsp;&nbsp;
@@ -106,4 +119,7 @@
             <span></span>
         </div>
     </div>
+    <aura:if isTrue="{!v.showExcelPopup}">
+        <c:ExcelExportPopup showExcelPopup = "{!v.showExcelPopup}"/>
+    </aura:if>
 </aura:component>

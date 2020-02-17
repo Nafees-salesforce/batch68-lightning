@@ -27,15 +27,20 @@
     <types>
         <members>*</members>
         <name>StaticResource</name>
-    </types>-->
+    </types>
     <types>
         <members>Calculator_Result__c</members>
         <name>CustomObject</name>
     </types>
+    -->
     <types>
-        <members>Calculator</members>
-        <members>DatatableDynamicRows</members>
-        <members>Message</members>
+        <members>*</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
+        <members>ExcelExportPopup</members>
+        <!--<members>DatatableDynamicRows</members>
+        <members>Message</members>-->
         <name>AuraDefinitionBundle</name>
     </types>
     <version>47.0</version>

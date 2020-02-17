@@ -1,0 +1,19 @@
+Assginment:1 -
+    * Display list of values in a list.
+    * Show search box on UI.
+    * On typing the text it should search automactically , the list should be filterd based on the search value.
+
+---------------
+
+Custom Events -
+    1. Application Event 
+
+        <aura:application>
+            <c:cmp1/> --> to notify info to cmp2 here we should use application events
+            <c:calculator>
+                --------------------> Component event can be notified only if the components are in the hierarchy as child or parent
+                <c:excelPopup/>
+            </c:calculator>
+        </aura:application>
+
+    2. Component Event
