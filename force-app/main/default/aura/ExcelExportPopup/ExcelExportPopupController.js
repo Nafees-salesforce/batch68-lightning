@@ -21,5 +21,11 @@
     onExport : function(cmp, event, helper) {
         console.log('recent: '+cmp.get("v.isRecentResults"));
         console.log('history: '+cmp.get("v.isHistoryResults"));
+        var compEvent = cmp.getEvent("excelEvt");
+        compEvent.setParams({
+            "isRecentResults" : cmp.get("v.isRecentResults") ,
+            "isHistoryResults" : cmp.get("v.isHistoryResults")
+        });
+        compEvent.fire();
     }
 })

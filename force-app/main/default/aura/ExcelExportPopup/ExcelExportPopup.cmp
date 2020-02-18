@@ -10,6 +10,8 @@
     <aura:attribute name="isRecentResults" type="Boolean" default="false"/>
     <aura:attribute name="isHistoryResults" type="Boolean" default="false"/>
 
+    <aura:registerEvent name="excelEvt" type="c:ExcelEvent"/>
+
     <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
         <div class="slds-modal__container">
           <header class="slds-modal__header">            

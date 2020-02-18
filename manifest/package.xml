@@ -39,8 +39,8 @@
     </types>
     <types>
         <members>ExcelExportPopup</members>
-        <!--<members>DatatableDynamicRows</members>
-        <members>Message</members>-->
+        <!--<members>DatatableDynamicRows</members>-->
+        <members>Calculator</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <version>47.0</version>

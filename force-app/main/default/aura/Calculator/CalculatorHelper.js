@@ -142,6 +142,54 @@
 
 		$A.enqueueAction(action);
 	},
+	generateData : function(cmp,event) {
+		debugger;
+		// declare variables
+		var csvStringResult, counter, keys = [], columnDivider, lineDivider, objectRecords = cmp.get("v.historyRows"),
+		fields = cmp.get("v.fields");
+       
+        // check if "objectRecords" parameter is null, then return from function
+        if (objectRecords == null || !objectRecords.length) {
+            return null;
+         }
+        // store ,[comma] in columnDivider variabel for sparate CSV values and 
+        // for start next line use '\n' [new line] in lineDivider varaible  
+        columnDivider = ',';
+        lineDivider =  '\n';
+ 
+        // in the keys valirable store fields API Names as a key 
+        // this labels use in CSV file header 
+        for(var i=0; i < fields.length; i++) { 
+        	keys.push(fields[i]);
+        }
+        
+        csvStringResult = '';
+        csvStringResult += keys.join(columnDivider);
+        csvStringResult += lineDivider;
+ 
+        for(var i=0; i < objectRecords.length; i++){   
+            counter = 0;
+           
+             for(var sTempkey in keys) {
+                var skey = keys[sTempkey] ;  
+ 
+              // add , [comma] after every String value,. [except first]
+                  if(counter > 0){ 
+                      csvStringResult += columnDivider; 
+                   }   
+               
+               csvStringResult += '"'+ objectRecords[i][skey]+'"'; 
+               
+               counter++;
+ 
+            } // inner for loop close 
+             csvStringResult += lineDivider;
+          }// outer main for loop close 
+       
+	   // return the CSV formate String 
+	   console.log('csvStringResult'+csvStringResult);
+        return csvStringResult;        
+	},
 	jsBasics : function(cmp,event) {
 		/* javaScript Basics *
 

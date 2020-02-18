@@ -24,6 +24,7 @@
     <aura:attribute type="List" name="results"/>
 
     <aura:attribute name="historyRows" type="List"/>
+    <aura:attribute name="fields" type="List" default="['Number_1__c','Operator__c','Number_2__c','Result__c']"/>
 
     <!-- Message Attributes -->
     <aura:attribute name="severity" type="String"/>
@@ -35,6 +36,7 @@
     <aura:attribute name="showExcelPopup" type="Boolean" default="false"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="excelEvt" event="c:ExcelEvent" action="{!c.handleCmpEvent}"/>
 
     <aura:if isTrue="{!v.showSpinner}">
         <lightning:spinner alternativeText="Loading" size="medium" />
