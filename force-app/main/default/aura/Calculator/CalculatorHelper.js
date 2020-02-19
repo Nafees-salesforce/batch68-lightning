@@ -142,10 +142,10 @@
 
 		$A.enqueueAction(action);
 	},
-	generateData : function(cmp,event) {
+	generateData : function(cmp,records, event) {
 		debugger;
 		// declare variables
-		var csvStringResult, counter, keys = [], columnDivider, lineDivider, objectRecords = cmp.get("v.historyRows"),
+		var csvStringResult, counter, keys = [], columnDivider, lineDivider, objectRecords = records,
 		fields = cmp.get("v.fields");
        
         // check if "objectRecords" parameter is null, then return from function

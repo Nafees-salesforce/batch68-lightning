@@ -2,7 +2,13 @@ Assginment:1 -
     * Display list of values in a list.
     * Show search box on UI.
     * On typing the text it should search automactically , the list should be filterd based on the search value.
-
+Assginment:2 -
+    * Create a status picklist on opportunity with the following values -
+        Red
+        Yellow
+        Green
+    * Based on the above picklist value we should show corresponding color image in the lightning component which should be added on opporutnity record page 
+    hand side
 ---------------
 
 http://srinusfdc.blogspot.com/2017/12/lightning-notes.html

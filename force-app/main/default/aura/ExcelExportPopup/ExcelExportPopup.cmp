@@ -1,6 +1,7 @@
 <aura:component>
 
     <aura:attribute name="showExcelPopup" type="Boolean"/>
+    <aura:attribute name="showMsg" type="Boolean" default="false"/>
     <aura:attribute name="options" type="List" default="[
     {'label': 'Recent Results', 'value': 'recentResults'},
     {'label': 'History', 'value': 'history'}
@@ -11,7 +12,6 @@
     <aura:attribute name="isHistoryResults" type="Boolean" default="false"/>
 
     <aura:registerEvent name="excelEvt" type="c:ExcelEvent"/>
-
     <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
         <div class="slds-modal__container">
           <header class="slds-modal__header">            
@@ -22,6 +22,9 @@
             <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Export Settings</h2>           
           </header>
           <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+              <aura:if isTrue="{!v.showMsg}">
+                <c:Message severity="error" message="Please select atleast one checkbox."/>
+              </aura:if>
                 <lightning:checkboxGroup name="Checkbox Group"
                 label="Checkbox Group"
                 options="{! v.options }"

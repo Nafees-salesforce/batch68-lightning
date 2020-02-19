@@ -1,0 +1,16 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId">
+    <aura:attribute name="accept" type="List" default="['.jpg', '.jpeg']"/>
+    <aura:attribute name="multiple" type="Boolean" default="true"/>
+    <aura:attribute name="disabled" type="Boolean" default="true"/>
+
+    <aura:attribute name="description" type="String"/>
+
+    <lightning:textarea name="description" label="Description" placeholder="Please enter Description" variant="label-hidden" value="{!v.description}" onchange="{!c.onDescription}"/>
+    <lightning:fileUpload  name="fileUploader"
+                           label= "Upload Files"
+                           multiple="{!v.multiple}"
+                           accept="{!v.accept}"
+                           disabled="{!v.disabled}"
+                           recordId="{!v.recordId}"
+                           onuploadfinished="{! c.handleUploadFinished }"/>
+</aura:component>	
