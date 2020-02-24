@@ -1,7 +1,8 @@
-<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId">
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="CustomFileContrl">
     <aura:attribute name="accept" type="List" default="['.jpg', '.jpeg']"/>
     <aura:attribute name="multiple" type="Boolean" default="true"/>
     <aura:attribute name="disabled" type="Boolean" default="true"/>
+    <aura:attribute name="category" type="String" default="1"/>
 
     <aura:attribute name="description" type="String"/>
 
@@ -13,4 +14,4 @@
                            disabled="{!v.disabled}"
                            recordId="{!v.recordId}"
                            onuploadfinished="{! c.handleUploadFinished }"/>
-</aura:component>	
+</aura:component>

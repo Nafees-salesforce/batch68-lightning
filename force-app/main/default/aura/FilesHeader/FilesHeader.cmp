@@ -1,0 +1,46 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction">
+    <div class="slds-page-header slds-page-header_record-home">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+            <div class="slds-media">
+                <div class="slds-media__figure">
+                    <lightning:icon iconName="standard:file" alternativeText="file" title="file" />
+                </div>
+                <div class="slds-media__body">
+                <div class="slds-page-header__name">
+                    <div class="slds-page-header__name-title">
+                    <h1>
+                        <span class="slds-card__header-title slds-truncate slds-m-right--xx-small" title="File">File</span>
+                        
+                    </h1>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="slds-page-header__col-actions">
+            <div class="slds-page-header__controls">                
+                <div class="slds-page-header__control">
+                <ul class="slds-button-group-list">              
+                    <li>
+                    <div class="slds-dropdown-trigger slds-dropdown-trigger_click">
+                        <button class="slds-button slds-button_icon slds-button_icon-border-filled" aria-haspopup="true" title="More Actions">
+                        <lightning:icon iconName="utility:down" alternativeText="down" title="down" size="xx-small"/>
+                        <span class="slds-assistive-text">More Actions</span>
+                        </button>
+                    </div>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="slds-page-header__row slds-page-header__row_gutters">
+            <div class="slds-page-header__col-details">
+            <div class="slds-page-header__detail-row">
+                <c:FilesTable/>
+            </div>
+            </div>
+        </div>
+    </div>
+</aura:component>	
