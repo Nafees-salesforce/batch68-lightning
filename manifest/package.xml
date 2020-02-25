@@ -41,8 +41,8 @@
     <types>
         <!--<members>ExcelExportPopup</members>
         <members>DatatableDynamicRows</members>
-        <members>Calculator</members>
-        <members>CustomFile</members>-->
+        <members>Calculator</members>-->
+        <members>CustomFile</members>
         <members>FilesHeader</members>
         <members>FilesTable</members>
         <name>AuraDefinitionBundle</name>

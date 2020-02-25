@@ -1,25 +1,26 @@
 <aura:component controller="FilesTableContrl">
     <aura:attribute name="data" type="Object"/>
+    <aura:handler name="init" value="this" action="{!c.doInit}"/>
     <ul class="uiAbstractList" data-aura-rendered-by="2:1827;a">
         <aura:iteration items="{!v.data}" var="file">
             <li class="slds-var-p-horizontal_medium slds-var-p-vertical_xx-small forceContentVirtualRelatedListStencil forceRecordLayout" data-aura-rendered-by="9:1827;a" data-aura-class="forceContentVirtualRelatedListStencil forceRecordLayout">
-                <a class="" data-aura-rendered-by="10:1827;a" href="{!file.ContentUrl}" title="Architecture">
+                <a class="" data-aura-rendered-by="10:1827;a" href="{!'/lightning/r/ContentDocument/'+file.ContentDocumentId+'/view'}" title="{!file.ContentDocument.Title}">
                     <div class="filerow" data-aura-rendered-by="11:1827;a">                    
                         <!--render facet: 31:1827;a--><!--render facet: 32:1827;a--><!--render facet: 33:1827;a-->
                         <div class="slds-size_12-of-12 slds-grid" data-aura-rendered-by="3054:0">
                         <div class="slds-show_inline-block slds-float_left slds-align-middle thumbnailImg medium" data-refid="divId" data-divid="AttachedContentDocument-file-badge-0692v00000EDLlWAAX" data-aura-rendered-by="3055:0">
                             <div class="forceContentContentThumbnail">
-                                <div class="thumbnailContainer"><img src="https://batch68sf-dev-ed--c.documentforce.com/sfc/servlet.shepherd/version/renditionDownload?rendition=thumb120by90&amp;versionId=0682v00000Dm1F6&amp;operationContext=CHATTER&amp;contentId=05T2v0000128dA1&amp;page=0" class="thumbnailImg medium" alt="JPG"/></div>
+                                <div class="thumbnailContainer"><img width="30" src="{!'/sfc/servlet.shepherd/version/renditionDownload?rendition=thumb120by90&amp;versionId='+file.ContentDocument.LatestPublishedVersionId+'&amp;operationContext=CHATTER&amp;contentId='+file.ContentDocumentId+'&amp;page=0'}" class="thumbnailImg medium" alt="{!file.ContentDocument.FileType}"/></div>
                             </div>
                         </div>
                         <div class="slds-show_inline-block slds-float_left slds-p-left--x-small slds-truncate slds-m-right_x-small" data-aura-rendered-by="3074:0">
-                            <span class="itemTitle slds-text-body--regulardesktop uiOutputText" title="Architecture" data-aura-rendered-by="3077:0" data-aura-class="uiOutputText">Architecture</span>
+                            <span class="itemTitle slds-text-body--regulardesktop uiOutputText" title="{!file.ContentDocument.Title}" data-aura-rendered-by="3077:0" data-aura-class="uiOutputText">{!file.ContentDocument.Title}</span>
                             <p class="slds-m-around--none secondaryFields slds-text-body--small slds-truncate" data-aura-rendered-by="3078:0">
-                                <span data-aura-rendered-by="3081:0" class="uiOutputDateTime" data-aura-class="uiOutputDateTime">Feb 24, 2020</span>
+                                <span data-aura-rendered-by="3081:0" class="uiOutputDateTime" data-aura-class="uiOutputDateTime">{!file.Date}&nbsp;|&nbsp;</span>
                                 <span data-aura-rendered-by="3085:0">
-                                    <span class="fileSizeAmount uiOutputNumber" data-aura-rendered-by="3088:0" dir="auto" data-aura-class="uiOutputNumber">28</span><!--render facet: 3089:0--><span class="fileSizeUnits uiOutputText" data-aura-rendered-by="3092:0" data-aura-class="uiOutputText">KB</span>
+                                    <span class="fileSizeAmount uiOutputNumber" data-aura-rendered-by="3088:0" dir="auto" data-aura-class="uiOutputNumber">{!file.ContentSize}</span><!--render facet: 3089:0--><span class="fileSizeUnits uiOutputText" data-aura-rendered-by="3092:0" data-aura-class="uiOutputText">&nbsp;KB&nbsp;|&nbsp;</span>
                                 </span>
-                                <span class="itemLabel slds-truncate uiOutputText" data-aura-rendered-by="3096:0" data-aura-class="uiOutputText">jpg</span><!--render facet: 3097:0--><!--render facet: 3098:0-->
+                                <span class="itemLabel slds-truncate uiOutputText" data-aura-rendered-by="3096:0" data-aura-class="uiOutputText">{!file.ContentDocument.FileType}</span><!--render facet: 3097:0--><!--render facet: 3098:0-->
                             </p>
                         </div>
                         <!--render facet: 3099:0-->
@@ -31,4 +32,4 @@
             </li>    
         </aura:iteration>    
     </ul>
-</aura:component>	
+</aura:component>

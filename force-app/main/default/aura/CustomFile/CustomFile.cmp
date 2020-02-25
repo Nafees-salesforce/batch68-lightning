@@ -5,13 +5,14 @@
     <aura:attribute name="category" type="String" default="1"/>
 
     <aura:attribute name="description" type="String"/>
-
-    <lightning:textarea name="description" label="Description" placeholder="Please enter Description" variant="label-hidden" value="{!v.description}" onchange="{!c.onDescription}"/>
-    <lightning:fileUpload  name="fileUploader"
-                           label= "Upload Files"
-                           multiple="{!v.multiple}"
-                           accept="{!v.accept}"
-                           disabled="{!v.disabled}"
-                           recordId="{!v.recordId}"
-                           onuploadfinished="{! c.handleUploadFinished }"/>
+    <div class="slds-box">
+        <lightning:textarea name="description" label="Description" placeholder="Please enter Description" variant="label-hidden" value="{!v.description}" onchange="{!c.onDescription}"/>
+        <lightning:fileUpload  name="fileUploader"
+                            label= "Upload Files"
+                            multiple="{!v.multiple}"
+                            accept="{!v.accept}"
+                            disabled="{!v.disabled}"
+                            recordId="{!v.recordId}"
+                            onuploadfinished="{! c.handleUploadFinished }"/>
+    </div>
 </aura:component>
