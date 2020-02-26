@@ -1,4 +1,8 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction">
+    
+    <aura:attribute name="category" type="String" default="1"/>   
+
+    <article class="slds-card slds-card_boundary headerBottomBorder forceRelatedListCardDesktop">   
     <div class="slds-page-header slds-page-header_record-home">
         <div class="slds-page-header__row">
             <div class="slds-page-header__col-title">
@@ -37,10 +41,16 @@
         </div>
         <div class="slds-page-header__row slds-page-header__row_gutters">
             <div class="slds-page-header__col-details">
-            <div class="slds-page-header__detail-row">
-                <c:FilesTable/>
-            </div>
-            </div>
+                <div class="slds-page-header__detail-row">
+                    <c:FilesTable category="{!v.category}"/>
+                </div>
+            </div>            
         </div>
+        <a href="{!'/lightning/r/'+v.recordId+'/related/CombinedAttachments/view'}">
+            <div class="slds-card__footer">
+                View All
+            </div>
+        </a>
     </div>
+</article> 
 </aura:component>	

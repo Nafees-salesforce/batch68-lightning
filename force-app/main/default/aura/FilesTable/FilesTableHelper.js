@@ -5,7 +5,9 @@
         var recordId = cmp.get("v.recordId");
         if(recordId) recordId = '0062v00001M3zvKAAR';
         var inputMap = {
-            'recordId' : '0062v00001M3zvKAAR'
+            'recordId' : '0062v00001M3zvKAAR',
+            'size' : cmp.get("v.size"),
+            'category' : cmp.get("v.category")
         };
         action.setParams({
             inputMap : inputMap

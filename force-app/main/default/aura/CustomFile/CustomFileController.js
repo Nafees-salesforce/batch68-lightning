@@ -37,6 +37,12 @@
             
             var state = response.getState();
             if(state === 'SUCCESS') {
+                var fileUploadEvent = $A.get("e.c:fileUploadEvent");
+                // Optional: set some data for the event (also known as event shape)
+                // A parameter’s name must match the name attribute
+                // of one of the event’s <aura:attribute> tags
+                //fileUploadEvent.setParams({ "myParam" : myValue });
+                fileUploadEvent.fire();
                 debugger;
                 var res = response.getReturnValue();
                 if(res.isSuccess && res.isContentSuccess) {
@@ -48,7 +54,7 @@
                         finalMsg = res.message;
                     if(res.contentMessage)
                         finalMsg += ' '+res.contentMessage
-                    helper.showToast(cmp, event,'Error',res.message);
+                    helper.showToast(cmp, event,'Error',res.message);                    
                 }                
             }
             else {

@@ -4,6 +4,8 @@
     <aura:attribute name="disabled" type="Boolean" default="true"/>
     <aura:attribute name="category" type="String" default="1"/>
 
+    <aura:registerEvent name="fileUploadEvent" type="c:fileUploadEvent"/>
+
     <aura:attribute name="description" type="String"/>
     <div class="slds-box">
         <lightning:textarea name="description" label="Description" placeholder="Please enter Description" variant="label-hidden" value="{!v.description}" onchange="{!c.onDescription}"/>

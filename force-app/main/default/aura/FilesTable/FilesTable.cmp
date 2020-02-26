@@ -1,6 +1,11 @@
 <aura:component controller="FilesTableContrl">
     <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="size" type="Integer" default="3"/>
+    <aura:attribute name="category" type="String" default="1"/>
+
     <aura:handler name="init" value="this" action="{!c.doInit}"/>
+    <aura:handler event="c:fileUploadEvent" action="{!c.doInit}"/>
+
     <ul class="uiAbstractList" data-aura-rendered-by="2:1827;a">
         <aura:iteration items="{!v.data}" var="file">
             <li class="slds-var-p-horizontal_medium slds-var-p-vertical_xx-small forceContentVirtualRelatedListStencil forceRecordLayout" data-aura-rendered-by="9:1827;a" data-aura-class="forceContentVirtualRelatedListStencil forceRecordLayout">
