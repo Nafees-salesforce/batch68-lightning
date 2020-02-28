@@ -11,7 +11,7 @@
 		cmp.set("v.results",resultArray);
     },
     handleOnClose: function(cmp,event) {
-
+		cmp.set("v.isRepeated",false);
 		cmp.set("v.show",true);
 		var selIcnVal = event.getSource().get("v.alternativeText");
 
@@ -30,6 +30,7 @@
 			cmp.set("v.results",results);
 		}
 		else {
+			cmp.set("v.currentIndex",index);
 			cmp.set("v.recordId",recId);
 			cmp.find("recordHandler").reloadRecord(); //To reload the record
 
