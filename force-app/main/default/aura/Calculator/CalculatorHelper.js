@@ -191,7 +191,7 @@
         return csvStringResult;        
 	},
 	jsBasics : function(cmp,event) {
-		/* javaScript Basics *
+		/* javaScript Basics */
 
 		var myArray = [10,20,30,40,50];
 
@@ -266,6 +266,6 @@
 		console.log(temp1 == temp2); //true
 		console.log(temp1 === temp2); //false
 
-		************************/
+		/************************/
 	}
 })

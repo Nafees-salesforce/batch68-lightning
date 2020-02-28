@@ -30,8 +30,10 @@
 			cmp.set("v.results",results);
 		}
 		else {
-			if(confirm('Are you sure?')) {
-				var action = cmp.get("c.deleteRec");
+			cmp.set("v.recordId",recId);
+			cmp.find("recordHandler").reloadRecord(); //To reload the record
+
+				/*var action = cmp.get("c.deleteRec");
 
 				var inputMap = {
 					'recId' : recId
@@ -58,8 +60,7 @@
 					}
 				});
 
-				$A.enqueueAction(action);
-			}
+				$A.enqueueAction(action);*/
 		}
 	},
 })

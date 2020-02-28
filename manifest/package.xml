@@ -41,10 +41,12 @@
     <types>
         <!--<members>ExcelExportPopup</members>
         <members>DatatableDynamicRows</members>
-        <members>Calculator</members>-->
-        <members>CustomFile</members>
         <members>FilesHeader</members>
         <members>FilesTable</members>
+        <members>JsInvokeCmp</members>
+        <members>Calculator</members>-->
+        <members>DatatableDynamicRows</members>
+        
         <name>AuraDefinitionBundle</name>
     </types>
     <version>47.0</version>

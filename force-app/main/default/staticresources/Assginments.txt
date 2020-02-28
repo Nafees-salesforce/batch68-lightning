@@ -26,3 +26,30 @@ Custom Events -
         </aura:application>
 
     2. Component Event
+    --------------------------------------------
+    event.getSource() --> To get the info of current element 
+    Two way binding -
+        <c:child category="{#v.category}"/>
+    Standard Events -
+        valueInit 
+        valueChange 
+    Custom Events -
+        Componet Event
+        Application Event
+    
+    Aura:if 
+    component.find('elemntId')
+
+    aura:iteration items="" var=""
+
+
+    cmpA
+    cmpB  --
+     <c:cmpA/>
+
+
+     lightning Data Services --> 
+
+     RecordViewForm ---> 
+
+
