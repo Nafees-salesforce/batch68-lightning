@@ -1,0 +1,11 @@
+<apex:page Controller="FeeDetailcls" lightningStylesheets="true">
+ <apex:form > 
+     <apex:commandButton action="{!NewFeePage}" value="New Fee"/>
+ <apex:pageBlock >
+        <apex:pageBlockTable value="{!Value}" var="I">
+                <apex:column value="{!I.Fee__r.Amount__c}"/>
+                <apex:column value="{!I.Fee__r.Payment_Mode__c}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock> 
+  </apex:form>     
+</apex:page>

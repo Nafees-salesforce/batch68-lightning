@@ -1,0 +1,45 @@
+<apex:page sidebar="false" showHeader="false" tabStyle="Account" Controller="RandomNoCode"  lightningStylesheets="true">
+    <apex:includeScript value="{!$Resource.JavaLibraryfiles}"/>
+    <script>
+        function Closewindow(){
+            window.close(); 
+        }
+    </script>
+
+    <apex:form >
+        <apex:pageMessages />
+        <apex:pageBlock >
+            <apex:pageBlockSection >  
+                <apex:pageblockSection title="Please Enter Mobile No" columns="1">
+                    <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Mobile:" styleClass="labelStyle"/>
+                        <apex:inputText value="{!Mobile}"/>
+                    </apex:pageBlockSectionItem>
+                 <apex:panelGrid columns="3" style="margin-left:19%;"> 
+                        <apex:commandButton value="Verify" action="{!OTPCode}" />
+                        <apex:commandButton value="Cancel" action="{!cancel}"/>
+                  </apex:panelGrid>
+                </apex:pageblockSection>                
+        </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>     
+   <apex:form >
+     <apex:outputPanel >
+    <apex:pageMessages />
+        <apex:pageBlock >
+            <apex:pageBlockSection >  
+                <apex:pageblockSection title="Please Enter Your Verification Code" columns="1">
+                    <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="OTP Code:" styleClass="labelStyle"/>
+                        <apex:inputText value="{!otpcode}"/>
+                    </apex:pageBlockSectionItem>
+                 <apex:panelGrid columns="2" style="margin-left:19%;"> 
+                        <apex:commandButton value="Verify" action="{!CheckOTPCode}" onclick="setTimeout(CloseWindow,5000)" />
+                 </apex:panelGrid>
+                </apex:pageblockSection>                
+        </apex:pageBlockSection>
+        </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form> 
+           
+</apex:page>

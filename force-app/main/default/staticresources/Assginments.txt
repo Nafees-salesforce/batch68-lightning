@@ -51,5 +51,8 @@ Custom Events -
      lightning Data Services --> 
 
      RecordViewForm ---> 
+---------------------------------------
+LWC -
+    http://www.salesforce-interviewquestions.com/2019/09/lightning-web-components-salesforce-key.html
 
 

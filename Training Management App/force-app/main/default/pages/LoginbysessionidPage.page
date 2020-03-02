@@ -1,0 +1,25 @@
+<apex:page controller="Loginbysessionid" lightningStylesheets="true">
+    <apex:form >
+        <apex:pageMessages id="errMsgId"/>
+        <apex:pageBlock title="Login Page" mode="edit">
+            <apex:pageBlockSection >
+                <apex:pageBlockSection columns="1">
+                </apex:pageBlockSection>
+                <apex:pageblockSection title="Please Login" columns="1">
+                     <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Server Name:" styleClass="labelStyle"/>
+                        <apex:inputText value="{!apiServerURL}"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Session Id:" styleClass="labelStyle"/>
+                        <apex:inputText value="{!apiSessionId}"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:panelGrid columns="3" style="margin-left:19%;"> 
+                    <apex:commandButton value="Login" action="{!doLogin}"/>
+                    <apex:commandButton value="Cancel" action="{!cancel}"/>    
+                    </apex:panelGrid>
+                </apex:pageblockSection>                
+        </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>                  
+</apex:page>

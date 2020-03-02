@@ -1,0 +1,22 @@
+<apex:page controller="DownloadContactsInWordDocument" renderAs="pdf" contentType="{!renderAsWord}" sidebar="false">
+    <apex:form >
+      <apex:pageBlock title="Contacts" id="pb1" rendered="{!pb1}">
+          <Apex:commandButton value="Export as Word" action="{!SaveAsWord}"/>
+      </apex:pageBlock>
+      <apex:pageBlock >
+          <apex:outputPanel id="contactTable">
+          <apex:pageBlockTable value="{!con}" var="c">
+              <apex:column value="{!c.Name}">
+                  <apex:facet name="header">Contact Name</apex:facet>  
+              </apex:column>
+              <apex:column value="{!c.Phone}">
+                  <apex:facet name="header">Phone</apex:facet>  
+              </apex:column>
+              <apex:column value="{!c.Email}">
+                  <apex:facet name="header">Email</apex:facet>  
+              </apex:column>
+          </apex:pageBlockTable>    
+          </apex:outputPanel>
+      </apex:pageBlock>  
+    </apex:form>
+</apex:page>

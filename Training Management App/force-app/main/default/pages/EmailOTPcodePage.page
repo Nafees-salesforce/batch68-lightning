@@ -1,0 +1,38 @@
+<apex:page sidebar="false" showHeader="false" tabStyle="Account" Controller="EmailOTPcode"  lightningStylesheets="true">
+     <apex:form >
+        <apex:pageMessages />
+        <apex:pageBlock title="SrinuSFDC Salesforce Account">
+            <apex:pageBlockSection >  
+                <apex:pageblockSection title="Please Enter Your Email Address" columns="1">
+                    <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Email:" styleClass="labelStyle"/>
+                        <apex:inputText value="{!Email}"/>
+                    </apex:pageBlockSectionItem>
+                 <apex:panelGrid columns="3" style="margin-left:19%;"> 
+                        <apex:commandButton value="Verify" action="{!OTPCode}" />
+                        <apex:commandButton value="Cancel" action="{!cancel}"/>
+                  </apex:panelGrid>
+                </apex:pageblockSection>                
+        </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>     
+   <apex:form >
+     <apex:outputPanel >
+    <apex:pageMessages />
+        <apex:pageBlock >
+            <apex:pageBlockSection >  
+                <apex:pageblockSection title="Please Enter Your Verification Code" columns="1">
+                    <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="OTP Code:" styleClass="labelStyle"/>
+                        <apex:inputText value="{!otpcode}"/>
+                    </apex:pageBlockSectionItem>
+                 <apex:panelGrid columns="2" style="margin-left:19%;"> 
+                        <apex:commandButton value="Login to Salesforce" action="{!CheckOTPCode}"/>
+                 </apex:panelGrid>
+                </apex:pageblockSection>                
+        </apex:pageBlockSection>
+        </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form> 
+           
+</apex:page>

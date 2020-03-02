@@ -1,0 +1,59 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="StudentFeeDataTable" >
+	<aura:attribute name="records" type="List"/>
+    <aura:attribute name="resourcPickVals" type="List"/>
+    <aura:attribute name="isSpinner" type="Boolean" default="false"/>
+    <aura:attribute name="title" type="String" default="Student Fee Information"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <div class="slds-section slds-is-open" id="titleOfTable">
+        <h3 class="slds-section__title slds-theme_shade">
+            <span class="slds-truncate slds-p-horizontal_small" title="Section Title">
+                {!v.title}
+            </span>
+        </h3>
+    </div>
+    <aura:if isTrue="{!v.isSpinner}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Email">Email</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Mobile">Mobile</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Amount">Amount</div>
+                </th> 
+                <th class="" scope="col">
+                    <lightning:button label="Add" title="Add" onclick="{! c.add }"/>
+                    <lightning:button variant="brand" label="Submit" title="Submit" onclick="{! c.submit }" />
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.records}" var="record" indexVar="index">
+                <tr class="slds-hint-parent">
+                    <td data-label="Email">
+                        <lightning:input type="email" name="Email" label="Email" variant="label-hidden" value="{!record.Email__c}"/>                       
+                    </td>
+                    <td data-label="Mobile">
+                         <lightning:input type="number" name="Mobile" label="Mobile" variant="label-hidden" value="{!record.Mobile__c}"/>
+                    </td>
+                    <td data-label="Amount">
+                        <lightning:input type="number" name="Amount" label="Amount" value="{!record.Amount__c}" variant="label-hidden"/>
+                    </td> 
+                    
+                    <td data-label="Delete">
+                        <a href="" id="{!index+':'+record.Id}" onclick="{!c.delete}">
+                        	<lightning:icon iconName="utility:delete" alternativeText="delete" variant="error"/>
+                        </a>
+                    </td>
+                </tr>         
+            </aura:iteration>
+        </tbody>
+    </table>
+</aura:component>

@@ -1,0 +1,43 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                access="global" >
+    
+    <aura:attribute name="abc" type="Boolean" default="false" />
+    <aura:attribute name="FullName" type="String" default="" />
+    <aura:attribute name="Email" type="string" default="" />
+    <aura:attribute name="MobileNumber" type="integer" default="" />
+      
+    <div class="slds">      
+    <div class="slds-card">
+    <div class="slds-page-header" role="banner">
+    	<div class="slds-align_absolute-center">
+            <div class="slds-text-heading_medium">
+                <div class="slds-m-top_xx-small">
+                          <p class="slds-page-header__title slds-truncate slds-align-middle" title="Batch-0072 / Salesforce Demo Registration">Batch-0072 / Salesforce Demo Registration</p>
+                          <p class="slds-text-body--small slds-page-header__info"><a href="http://onlinetraining.srinusfdc.com/" target="_blank">onlinetraining.srinusfdc.com</a></p>
+                      </div>
+                      
+                  
+            </div>
+    	</div>
+    </div>
+        </div>
+    </div>
+    
+    <div class="slds-size_3-of-12">
+        <lightning:input label="Full Name" name="FullName" placeholder="Please enter your Name" value="{!v.FullName}" required="true"/>
+        <br/>
+        <lightning:input label="Email" type="email" name="Email" placeholder="Please enter valid Email" value="{!v.Email}" required="true"/>
+        <br/>
+        <lightning:input label="Mobile/Whats App Number" type="tel" name="MobileNumber" placeholder="Please enter valid Mobile" value="{!v.MobileNumber}" required="true"/>
+        <br/>
+        <lightning:button label="Submit" onclick="{!c.submitStudentForm}"></lightning:button>
+    </div>
+    <footer class="slds-p-around--large" role="contentinfo">
+          
+          <div class="slds-grid slds-grid--align-spread">
+            <p class="slds-col">Salesforce Demo Registration Form</p>
+            <p class="slds-col">&copy;  2020 <a href="http://www.srinusfdc.com/">www.srinusfdc.com</a>, All rights reserved.</p>
+          </div>
+          
+        </footer>
+</aura:component>

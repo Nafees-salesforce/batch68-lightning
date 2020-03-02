@@ -1,0 +1,51 @@
+<apex:page readOnly="true" controller="DownloadContactsInPdf" applyHtmlTag="false" sidebar="false" showHeader="false" renderAs="{!renderAsPdf}" docType="html-5.0">
+    <head>    
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />    
+        <style type="text/css">
+            @page {
+            size: A4 landscape;    
+            border: 1px solid black;    
+            padding-left: 5px;    
+            padding-right: 5px;      
+            }
+            th {  
+            font-weight: bold;
+            text-align: center;
+            background-color: #92d5f0;
+            color: black;
+            padding: 8px;
+            }
+            td {    
+            font-size: 15px;
+            text-align: left;
+            padding: 8px;
+            }
+            table{
+            border-collapse: collapse;
+            }
+            table, th, td {
+            border: 1px solid black;
+            }
+        </style>    
+    </head>    
+    <apex:form >
+      <apex:pageBlock title="Contacts" id="pb1" rendered="{!pb1}">
+          <Apex:commandButton value="Export as Pdf" action="{!SaveAsPdf}"/>
+      </apex:pageBlock>
+      <apex:pageBlock >
+          <apex:outputPanel id="contactTable">
+          <apex:pageBlockTable value="{!con}" var="c">
+              <apex:column value="{!c.Name}">
+                  <apex:facet name="header">Contact Name</apex:facet>  
+              </apex:column>
+              <apex:column value="{!c.Phone}">
+                  <apex:facet name="header">Phone</apex:facet>  
+              </apex:column>
+              <apex:column value="{!c.Email}">
+                  <apex:facet name="header">Email</apex:facet>  
+              </apex:column>
+          </apex:pageBlockTable>    
+          </apex:outputPanel>
+      </apex:pageBlock>  
+    </apex:form>
+</apex:page>

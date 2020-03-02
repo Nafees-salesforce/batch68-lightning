@@ -1,0 +1,43 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller="FetchStudents" >
+    <aura:attribute name="std" type="Student__c[]"/>
+    <ui:button label="Get Students" press="{!c.myAction}"/>
+    <aura:iteration var="s" items="{!v.std}" >
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+  <thead>
+    <tr class="slds-line-height_reset">
+      <th class="" scope="col">
+          
+    <th class="" scope="col">
+       <div class="slds-truncate" title="First Name">{!s.First_Name__c}</div>
+    </th>
+    <th class="" scope="col">
+       <div class="slds-truncate" title="Last Name">{!s.Last_Name__c}</div>
+    </th>    
+     <th class="" scope="col">
+       <div class="slds-truncate" title="Email">{!s.Email__c}</div>
+    </th>
+    <th class="" scope="col">
+       <div class="slds-truncate" title="Mobile">{!s.Mobile__c}</div>
+    </th>
+    <th class="" scope="col">
+       <div class="slds-truncate" title="Course Type">{!s.Course_Type__c}</div>
+    </th>
+    <th class="" scope="col">
+       <div class="slds-truncate" title="City">{!s.City__c}</div>
+    </th>
+        <th class="" scope="col">
+       <div class="slds-truncate" title="Country">{!s.Country__c}</div>
+    </th>
+          
+        <th class="" scope="col">
+       <div class="slds-truncate" title="Fees">{!s.Fees__c}</div>
+    </th>
+           <th class="" scope="col">
+       <div class="slds-truncate" title="Trainer">{!s.Trainer_Name__c}</div>
+    </th>
+    </th>
+    </tr>
+            </thead>
+        </table>    
+    </aura:iteration>
+</aura:component>

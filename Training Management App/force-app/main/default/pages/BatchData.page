@@ -1,0 +1,16 @@
+<apex:page controller="BatchDatacls" lightningStylesheets="true">
+    <apex:form >
+    <apex:commandButton action="{!NewBatchPage}" value="New Batch"/>    
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!Batchdata}" var="I">
+                <apex:column value="{!I.Batch__r.Name}"/>
+                <apex:column value="{!I.Batch__r.BatchName__c}"/>
+                <apex:column value="{!I.Batch__r.Start_Date__c}"/>
+                <apex:column value="{!I.Batch__r.End_Date__c}"/>
+                <apex:column value="{!I.Batch__r.Timing__c}"/>
+                 <apex:column value="{!I.Batch__r.Duration__c}" />           
+                             
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    </apex:form>    
+</apex:page>

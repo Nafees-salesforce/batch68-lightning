@@ -1,0 +1,37 @@
+<apex:page sidebar="false" showHeader="false" tabStyle="Account" standardController="Information__c" extensions="NewStudentExt" lightningStylesheets="true">
+    <apex:form >
+        <apex:pageMessages id="errMsgId"/>
+        <apex:pageBlock title=" Student Login Registration" mode="edit">
+            <apex:pageBlockSection >
+                  <apex:pageblockSection title="Please Register" columns="1">
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Batch:"/>
+                        <apex:inputField value="{!Information__c.Batch__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Student Name:"/>
+                        <apex:inputField value="{!Information__c.Student__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Course Name:"/>
+                        <apex:inputField value="{!Information__c.Course__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Fee:"/>
+                        <apex:inputField value="{!Information__c.Fee__c}" required="true"/>
+                    </apex:pageBlockSectionItem>  
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Trainer Name:"/>
+                        <apex:inputField value="{!Information__c.Trainer__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                                       
+                        <apex:panelGrid columns="3" style="margin-left:19%;"> 
+                        <apex:commandButton value="Submit" action="{!save}"/>
+                        <apex:commandButton value="Cancel" action="{!cancel}" immediate="true"/>
+                        <apex:commandButton value="Back to Login" action="/apex/NewStudentHome" immediate="true"/>
+                    </apex:panelGrid>
+                </apex:pageblockSection>                
+        </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

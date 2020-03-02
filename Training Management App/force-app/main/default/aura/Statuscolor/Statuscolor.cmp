@@ -1,0 +1,9 @@
+<aura:component controller="StatusSourceColorPicklistcls" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="lstofOpportunity" type="Opportunity[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:iteration items="{!v.lstofOpportunity}" var="opp">
+        <th scope="row">
+                <c:StatusSourceColorPicklist Selectedvalue="{!opp.Status__c}"/>
+        </th>
+	 </aura:iteration>
+</aura:component>

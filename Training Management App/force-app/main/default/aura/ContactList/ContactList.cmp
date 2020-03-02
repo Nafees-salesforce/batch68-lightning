@@ -1,0 +1,41 @@
+<aura:component controller ="ContactListCtrl" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="Contactlst" type="Contact[]"/>
+    <aura:handler name ="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="ContactEvent" event="c:Searchevent" action="{!c.handlecompEvent}"/>
+    <!--<c:HeaderComponent Tagline="List of Contacts" />-->
+    <c:ContactSearch/>
+    
+    <div class="slds-p-around--large">
+         <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+      <thead>
+        <tr class="slds-text-title--caps">
+          <th scope="col">
+            <div class="slds-truncate" title="Name">Name</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Email">Email</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Phone">Phone</div>
+          </th>
+          </tr>
+      </thead>
+      <tbody>
+        <aura:iteration items="{!v.Contactlst}" var="con">
+          <tr>
+            <th scope="row">
+              <div class="slds-truncate" title="{!con.Name}">{!con.Name}</div>
+            </th>
+            <th scope="row">
+              <div class="slds-truncate" title="{!con.Email}">{!con.Email}</div>
+            </th>
+            <th scope="row">
+              <div class="slds-truncate" title="{!con.Phone}">{!con.Phone}</div>
+            </th>
+            </tr>
+          </aura:iteration>
+       </tbody>
+        </table>
+    </div>    
+    
+</aura:component>

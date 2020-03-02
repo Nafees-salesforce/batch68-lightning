@@ -1,0 +1,82 @@
+<apex:page sidebar="false" showHeader="false" tabStyle="Account" StandardController="TBatch__c" extensions="TimeZone" lightningStylesheets="true">
+    <head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+</head>
+    <apex:form >
+      <apex:pageBlock >
+          <apex:pageBlockSection rendered="{!TBatch__c.Time_Zone__c == 'EST'}">
+             <apex:facet name="header"> EST </apex:facet> 
+             <table style="width: 100%;">
+              <tr>
+              <td style="width: 50%;">
+              <table>   
+              <tr> 
+              <td>
+                  <apex:outputLabel value="Start Date"/>
+                  <apex:outputText value="{!StartDate}" /> 
+              </td> 
+              </tr> 
+              <tr> 
+              <td>
+                  <apex:outputLabel value="End Date"/>
+                  <apex:outputText value="{!EndDate}"/> </td>
+              </tr> 
+              <tr> 
+              <td>
+                   <apex:outputLabel value="Start Time"/>
+                  <apex:outputText value="{!StartTime}" /> </td>
+              </tr> 
+              <tr> 
+              <td>
+                  <apex:outputLabel value="End Time"/>
+                  <apex:outputText value="{!EndTime}"/> </td>
+              </tr> 
+            </table> 
+           </td>
+           </tr>
+           </table>
+       </apex:pageBlockSection>
+      </apex:pageBlock>
+    </apex:form>
+      <apex:form >
+      <apex:pageBlock >
+          <apex:pageBlockSection rendered="{!TBatch__c.Time_Zone__c == 'CST'}">      
+              <apex:facet name="header">  CST  </apex:facet>    
+             <table style="width: 100%;">
+              <tr>
+              <td style="width: 50%;">
+              <table>   
+              <tr> 
+             <td>
+                  <apex:outputLabel value="Start Date"/>
+                  <apex:outputText value="{!StartDate}" /> 
+              </td> 
+              </tr> 
+              <tr> 
+              <td>
+                  <apex:outputLabel value="End Date"/>
+                  <apex:outputText value="{!EndDate}"/> </td>
+              </tr> 
+              <tr> 
+              <td>
+                   <apex:outputLabel value="Start Time"/>
+                  <apex:outputText value="{!StartTime }" /> </td>
+              </tr> 
+              <tr> 
+              <td>
+                  <apex:outputLabel value="End Time"/>
+                  <apex:outputText value="{!EndTime}"/> </td>
+              </tr> 
+                  </table>
+                  </td>
+                 </tr>
+              </table>
+          </apex:pageBlockSection>
+          </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,8 @@
+<aura:component controller="StudentFeeBarchartcls" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<ltng:require scripts="{!$Resource.Chartjs}" afterScriptsLoaded="{!c.ctr}"/>
+    <aura:attribute name="recordId" type="String" />
+    <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--3-of-4">
+        <canvas aura:id="barChart" id="barChart" />
+    </div>
+    
+</aura:component>

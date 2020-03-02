@@ -1,0 +1,36 @@
+<aura:component controller="NewStudentDataTable" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="email" type="String"/>
+	<aura:attribute name="mobile" type="integer" />
+	<aura:attribute name="newStudent" type="Object"/>  
+    <aura:attribute name="studentName" type="String"/>
+    <aura:attribute name="BatchName" type="String"/>
+    <aura:attribute name="CourseName" type="String"/>
+    <aura:attribute name="TrainerName" type="String"/>
+    <aura:attribute name="student" type="list"/>
+    
+	
+    <lightning:input type="String" name="email1" value="{!v.newStudent.email}" label="Email" />
+    <lightning:input type="mobile" name="Number" value="{!v.newStudent.mobile}" label="Mobile" />
+    <lightning:button variant="base" label="Search"  onclick="{! c.SearchStudent }"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>  
+    
+    <aura:if isTrue="{!v.newStudent.email}">
+    <lightning:input name="BatchName" value="{!v.BatchName}" label="BatchName" />
+    <lightning:input name="studentName" value="{!v.studentName}" label="StudentName" />
+    <lightning:input name="CourseName" value="{!v.CourseName}" label="CourseName" />
+    <lightning:input name="TrainerName" value="{!v.TrainerName}" label="TrainerName" />
+    <lightning:button variant="base" label="Save"  onclick="{! c.SaveStudentInfo }"/>
+        
+    <aura:set attribute="else">
+    <lightning:input name="FirstName" value="{!v.newStudent.FirstName}" label="FirstName" type="text" />
+    <lightning:input name="LastName" value="{!v.newStudent.LastName}" label="LastName" type="text" />
+    <lightning:input name="Email" value="{!v.newStudent.Email}" label="Email" type="email"/>
+    <lightning:input name="Mobile" value="{!v.newStudent.Mobile}" label="Mobile" type="phone"/>
+    <lightning:input name="City" value="{!v.newStudent.City}" label="City" type="text" />
+    <lightning:input name="Country" value="{!v.newStudent.Country}" label="Country" type="text" />
+    <lightning:button variant="base" label="Save"  onclick="{! c.SaveNewStudentInfo }"/>
+    </aura:set>  
+    </aura:if>   
+</aura:component>

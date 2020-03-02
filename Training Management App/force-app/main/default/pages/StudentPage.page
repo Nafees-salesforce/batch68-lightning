@@ -1,0 +1,16 @@
+<apex:page controller="Studentcls" lightningStylesheets="true">
+    <apex:form >
+    <apex:commandButton action="{!NewStudentPage}" value="New Student"/>    
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!Student}" var="I">
+        <apex:column value="{!I.Student__r.Name}"/>
+                <apex:column value="{!I.Student__r.Email__c}"/>
+                <apex:column value="{!I.Student__r.Mobile__c}"/>
+                <apex:column value="{!I.Student__r.Whatsapp_No__c}"/>
+                <apex:column value="{!I.Student__r.Paid_Amount__c}"/>
+                <apex:column value="{!I.Student__r.City__c}"/>
+                <apex:column value="{!I.Student__r.Country__c}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock> 
+    </apex:form>   
+</apex:page>

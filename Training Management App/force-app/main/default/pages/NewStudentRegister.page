@@ -1,0 +1,74 @@
+<apex:page sidebar="false" showHeader="false" tabStyle="Account" StandardController="Student__c" extensions="NewStudentRegister" lightningStylesheets="true">
+    <apex:form >
+        <apex:pageMessages id="errMsgId"/>
+        <apex:pageBlock title="New Student Registration" mode="edit">
+            <apex:pageBlockSection >
+                <apex:pageBlockSection columns="1">
+                </apex:pageBlockSection>
+                <apex:pageblockSection title="Please Register" columns="1">
+                     <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Student Name:"/>
+                        <apex:inputField value="{!Student__c.Name}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="First Name:"/>
+                        <apex:inputField value="{!Student__c.First_Name__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Last Name:"/>
+                        <apex:inputField value="{!Student__c.Last_Name__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Email:"/>
+                        <apex:inputField value="{!Student__c.Email__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Mobile:"/>
+                        <apex:inputField value="{!Student__c.Mobile__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Whatsapp No:"/>
+                        <apex:inputField value="{!Student__c.Whatsapp_No__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Whatsapp No is the same as Mobile No:"/>
+                        <apex:inputField value="{!Student__c.Whatsapp_No_is_the_Same_as_Mobile_No__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="City:"/>
+                        <apex:inputField value="{!Student__c.City__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Country:"/>
+                        <apex:inputField value="{!Student__c.Country__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Course Name:"/>
+                        <apex:inputField value="{!Student__c.Course_Name__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Sub Course Name:"/>
+                        <apex:inputField value="{!Student__c.Sub_Course__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Total Amount:"/>
+                        <apex:inputField value="{!Student__c.Total_Amount__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Paid Amount:"/>
+                        <apex:inputField value="{!Student__c.Paid_Amount__c}" required="true"/>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Trainer Name:"/>
+                        <apex:inputField value="{!Student__c.Trainer_Name__c}" required="true"/>
+                     </apex:pageBlockSectionItem> 
+                        <apex:panelGrid columns="3" style="margin-left:19%;"> 
+                        <apex:commandButton value="Save" action="{!save}"/>
+                        <apex:commandButton value="Cancel" action="{!cancel}" immediate="true"/>
+                        <apex:commandButton value="Back to Login" action="/apex/NewStudentHome" immediate="true"/>
+                    </apex:panelGrid>
+                </apex:pageblockSection>                
+        </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

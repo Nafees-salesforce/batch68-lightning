@@ -45,7 +45,7 @@
         <members>FilesTable</members>
         <members>JsInvokeCmp</members>
         <members>Calculator</members>-->
-        <members>CaseForm</members>
+        <members>*</members>
         
         <name>AuraDefinitionBundle</name>
     </types>

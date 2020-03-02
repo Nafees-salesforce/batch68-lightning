@@ -1,0 +1,11 @@
+<apex:page controller="CourseDatacls" lightningStylesheets="true">
+    <apex:form >
+     <apex:commandButton action="{!NewCoursePage}" value="New Course"/>     
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!Course}" var="I">
+                <apex:column value="{!I.Course__r.CourseName__c}"/>
+                <apex:column value="{!I.Course__r.SubCourse__c}"/>
+         </apex:pageBlockTable>
+    </apex:pageBlock> 
+    </apex:form>    
+</apex:page>

@@ -1,0 +1,55 @@
+<aura:component controller="OpportunityDataTableCls" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="lstofOpportunity" type="Opportunity[]"/>
+    <aura:attribute name="nameSearch" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div>
+     <lightning:input aura:id="nameSearch" label="Search Names" onchange="{!c.handleNameSearchChange}"/>
+    </div>
+    <div class="slds-p-around--large">
+         <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+      <thead>
+        <tr class="slds-text-title--caps">
+          <th scope="col">
+            <div class="slds-truncate" title="Name">Name</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Quantity">Quantity</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Close Date">Close Date</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Amount">Amount</div>
+          </th>
+          <th scope="col">
+            <div class="slds-truncate" title="Stage">Stage</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <aura:iteration items="{!v.lstofOpportunity}" var="opp">
+          <tr>
+            <th scope="row">
+              <div class="slds-truncate" title="{!opp.Name}">{!opp.Name}</div>
+            </th>
+            <th scope="row">
+              <div class="slds-truncate" title="{!opp.TotalOpportunityQuantity}">{!opp.TotalOpportunityQuantity}</div>
+            </th>
+            <th scope="row">
+              <div class="slds-truncate" title="{!opp.CloseDate}">{!opp.CloseDate}</div>
+            </th>
+            <th scope="row">
+              <div class="slds-truncate" title="{!opp.Amount}">{!opp.Amount}</div>
+            </th>
+            <th scope="row">
+              <div class="slds-truncate" title="{!opp.StageName}">{!opp.StageName}</div>
+            </th> 
+             <th scope="row">
+                <c:OpportunitySourceColor oppSource="{!opp.StageName}"/>
+            </th>
+          </tr>
+        </aura:iteration>
+      </tbody>
+    </table>
+  </div>
+</aura:component>

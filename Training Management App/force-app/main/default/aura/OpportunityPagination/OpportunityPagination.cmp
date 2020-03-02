@@ -1,0 +1,35 @@
+<aura:component controller="OpportunityPaginationCls" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<!--use JQuery Data Table css,Js and jQUERY js file in lightning component by using ltng:require component-->
+    <ltng:require styles="{! $Resource.	datatable + '/DataTables-1.10.16/media/css/jquery.dataTables.min.css'}" 
+                  scripts="{!join(',', 
+                           $Resource.jquery224 , 
+                           $Resource.datatable + '/DataTables-1.10.16/media/js/jquery.dataTables.min.js')
+                           }" afterScriptsLoaded="{!c.scriptsLoaded}"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>  
+    
+    <aura:attribute name="Opplst" type="Opportunity[]"/>     
+    
+    <div class="slds-m-around_medium">
+        <table id="tableId" class="slds-table slds-table_bordered slds-table_cell-buffer" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Close Date</th>
+                    <th>Amount</th>
+                    <th>Stage</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.Opplst}" var="opp">
+                    <tr>
+                        <td>{!opp.Name}</td>
+                        <td>{!opp.CloseDate}</td>
+                        <td>{!opp.Amount}</td>
+                        <td>{!opp.StageName}</td>
+                    </tr>
+                </aura:iteration>  
+            </tbody>
+        </table>
+    </div>
+</aura:component>

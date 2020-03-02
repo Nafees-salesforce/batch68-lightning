@@ -1,0 +1,17 @@
+<apex:page tabstyle="account" StandardController="Account" extensions="ParentChildcls" lightningStylesheets="true">
+    <apex:form >
+        <apex:pageBlock title="Account List">
+        
+        	<apex:commandButton action="{!MergeAction}" value="Merge"/>
+          
+      
+        <apex:pageBlockTable value="{!WrapperList}" var="acctWrapper">
+                <apex:column headerValue=" ">
+                	<apex:inputCheckbox required="true" value="{!acctWrapper.isSelected}"/>
+                </apex:column>
+                 <apex:column value="{!acctWrapper.cAccount.Id}"/>
+                <apex:column value="{!acctWrapper.cAccount.Name}"/>
+        </apex:pageBlockTable>
+            </apex:pageBlock> 
+    </apex:form> 
+</apex:page>

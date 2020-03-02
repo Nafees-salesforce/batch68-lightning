@@ -1,0 +1,13 @@
+<apex:page controller="ShowPendingFee" lightningStylesheets="true">
+    <apex:pageMessages />
+      <apex:pageBlock >
+        <apex:pageBlockTable value="{!Student}" var="I">
+                <apex:column value="{!I.Student__r.Name}"/>
+                <apex:column value="{!I.Student__r.Email__c}"/>
+                <apex:column value="{!I.Student__r.Mobile__c}"/>
+                <apex:column value="{!I.Student__r.Course_Name__c}"/>
+                <apex:column value="{!I.Fee__r.Amount__c}"/> 
+                <apex:column value="{!I.Pending_Fee__c}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock> 
+</apex:page>

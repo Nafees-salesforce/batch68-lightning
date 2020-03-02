@@ -1,0 +1,40 @@
+<aura:component controller="sfdcontroller" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" >
+    
+    <!--use JQuery Data Table css,Js and jQUERY js file in lightning component by using ltng:require component-->
+    <ltng:require styles="{! $Resource.	datatable + '/DataTables-1.10.16/media/css/jquery.dataTables.min.css'}" 
+                  scripts="{!join(',', 
+                           $Resource.jquery224 , 
+                           $Resource.datatable + '/DataTables-1.10.16/media/js/jquery.dataTables.min.js')
+                           }" afterScriptsLoaded="{!c.scriptsLoaded}"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>  
+    
+    <aura:attribute name="lstInfo" type="Information__c[]"/>     
+    
+    <div class="slds-m-around_medium">
+        <table id="tableId" class="slds-table slds-table_bordered slds-table_cell-buffer" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Course Name</th>
+                    <th>Amount</th> 
+                    <th>Pending Fee</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.lstInfo}" var="info">
+                    <tr>
+                        <td>{!info.Student__r.Name}</td>
+                        <td>{!info.Student__r.Email__c}</td>
+                        <td>{!info.Student__r.Mobile__c}</td>
+                        <td>{!info.Student__r.Course_Name__c}</td>
+                        <td>{!info.Fee__r.Amount__c}</td>
+                        <td>{!info.Pending_Fee__c}</td>
+                    </tr>
+                </aura:iteration>  
+            </tbody>
+        </table>
+    </div>
+</aura:component>

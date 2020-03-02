@@ -1,0 +1,9 @@
+<aura:component  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="Color" type="string"/>
+    <aura:attribute name="Selectedvalue" type="string"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="slds-truncate"  title="{!v.Selectedvalue}">
+    <span class="slds-badge" style="{! 'background-color: ' + v.Color}"> {!' Status is '+v.Selectedvalue+' color'}</span>
+  </div>
+	
+</aura:component>
