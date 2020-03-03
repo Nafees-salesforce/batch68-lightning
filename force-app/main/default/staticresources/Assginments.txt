@@ -9,6 +9,19 @@ Assginment:2 -
         Green
     * Based on the above picklist value we should show corresponding color image in the lightning component which should be added on opporutnity record page 
     hand side
+
+
+Datatable Featurs -
+    1. Basic Datatable 
+    2. Pagination 
+    3. Search 
+    4. Filters Section
+    5. Dynamic Rows Input Table
+    6. Selected Values in the table should be exported.
+    7. Selected records should be submitted for approval 
+    8. Row Level Actions (View, Edit, Delete)
+    9. On Edit open Modal Dialog 
+
 ---------------
 
 http://srinusfdc.blogspot.com/2017/12/lightning-notes.html
@@ -56,3 +69,5 @@ LWC -
     http://www.salesforce-interviewquestions.com/2019/09/lightning-web-components-salesforce-key.html
 
 
+* javaScript to HTML to reflect the value use @track 
+* HTML to javaScript to reflect the value use event handler

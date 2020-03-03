@@ -47,7 +47,7 @@
         <members>Calculator</members>-->
         <members>*</members>
         
-        <name>AuraDefinitionBundle</name>
+        <name>LightningComponentBundle</name>
     </types>
     <version>47.0</version>
 </Package>
