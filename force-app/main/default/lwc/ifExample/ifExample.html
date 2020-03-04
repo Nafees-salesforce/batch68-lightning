@@ -1,0 +1,31 @@
+<template>    
+    <lightning-card  title="If Example">
+        <lightning-layout>
+            <lightning-layout-item padding="around-small">
+                <lightning-input type="checkbox" label="Show" name="show" onchange={handleCheckbox}></lightning-input>      
+            </lightning-layout-item>
+            <template if:true={isDisplay}>   
+                <lightning-layout-item padding="around-small">                                        
+                    <ul class="slds-listbox slds-listbox_vertical">
+                        <template for:each={cities} for:item="city"> 
+                            <li class="slds-listbox__item" key={city}>
+                                {city}
+                            </li>
+                        </template>                                                 
+                    </ul>                
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">                                        
+                    <ul class="slds-listbox slds-listbox_vertical">
+                        <template iterator:it={countries}> 
+                            <li class="slds-listbox__item" key={it.value}>
+                                <div if:true={it.first} style="border-top: 1px solid black;padding-top: 5px;"></div>
+                                {it.value}
+                                <div if:true={it.last} class="list-last"></div>
+                            </li>
+                        </template>                                                 
+                    </ul>                
+                </lightning-layout-item>
+            </template>
+        </lightning-layout>
+    </lightning-card>
+</template>

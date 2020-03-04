@@ -24,7 +24,8 @@ public class AllInvoiceExcelReport {
                                     Cloud_Account__r.RSM_INVOICE_VOLUME__c, Cloud_Account__r.EC_INVOICE_VOLUME__c,
                                     Cloud_Account__r.WINS_DriverSell_Licenses__c,
                                     Cloud_Account__r.WINS_Presell_Licenses__c,
-                                    Cloud_Account__r.WINS_Team_Leader_Licenses__c
+                                    Cloud_Account__r.WINS_Team_Leader_Licenses__c,
+                                    Account.Cloud_Invoice_To__c
                                     from Opportunity where RecordType.DeveloperName = 'WINS_Opportunity'];
         
         //Holds all the data to export
@@ -60,7 +61,10 @@ public class AllInvoiceExcelReport {
                 }
             }
             resultData.addAll(processCloudOpps(cloudOpps));
-            resultData.addAll(processMainOpps(mainOpps));
+            List<InvoiceData> processMainOppsData = processMainOpps(mainOpps);
+            if(processMainOppsData != null && processMainOppsData.size() > 0) {
+                resultData.addAll(processMainOppsData);
+            }
         }
         outputMap.put('data',resultData);
         return outputMap;
@@ -72,7 +76,10 @@ public class AllInvoiceExcelReport {
                 data.addAll(handleSg1CloudAcc(cloudOpp));
             }
             else if(cloudOpp.Service_Group__c == '2' || cloudOpp.Service_Group__c == '3') {
-                data.addAll(handleSg2N3CloudAcc(cloudOpp));
+                List<InvoiceData> handleSg2N3CloudAccData = handleSg2N3CloudAcc(cloudOpp);
+                if(handleSg2N3CloudAccData != null && handleSg2N3CloudAccData.size() > 0) {
+                    data.addAll(handleSg2N3CloudAccData);
+                }
             }
         }
         return data;
@@ -84,7 +91,10 @@ public class AllInvoiceExcelReport {
                 data.addAll(handleSg1Acc(mainOpp));
             }
             else if(mainOpp.Service_Group__c == '2' || mainOpp.Service_Group__c == '3') {
-                data.addAll(handleSg2N3Acc(mainOpp));
+                List<InvoiceData> handleSg2N3AccData = handleSg2N3Acc(mainOpp);
+                if(handleSg2N3AccData != null && handleSg2N3AccData.size() > 0) {
+                    data.addAll(handleSg2N3AccData);
+                }
             }
         }
         return data;
@@ -182,22 +192,25 @@ public class AllInvoiceExcelReport {
         return data;
     }
     //To handle SG2 and SG3 Cloud Account
-    public static List<InvoiceData> handleSg2N3CloudAcc(Opportunity opp) {
+    public static List<InvoiceData> handleSg2N3CloudAcc(Opportunity cloudOpp) {
+        List<InvoiceData> data = new List<InvoiceData>();
         List<Opportunity> opp4UpdLst = new List<Opportunity>();
-        for(Opportunity oppRec : this.oppLst) {
-            if(oppRec.Account.Cloud_Invoice_To__c == opp.Account.WINS_Wholesaler_Number__c) {
+        for(Opportunity oppRec : oppLst) {
+            if(oppRec.Account.Cloud_Invoice_To__c == cloudOpp.Account.WINS_Wholesaler_Number__c) {
                 opp4UpdLst.add(oppRec);
             }
         }
         if(opp4UpdLst.size() > 0) {
-            /*system.debug('Cloud_Account__r for sg2 or sg3');
+            system.debug('Cloud_Account__r for sg2 or sg3');
             Decimal wslr_totalVolume = 0;
             Decimal wlsr_selling_licenses = 0;
             List<Opportunity> oppCloudToLst = new List<Opportunity>();
-            for(Opportunity opp : [Select Id,Cloud_Account__r.WINS_Total_Invoicing_Volume__c, 
-                                    Cloud_Account__r.WINS_DriverSell_Licenses__c, Cloud_Account__r.WINS_Presell_Licenses__c, 
-                                    Cloud_Account__r.WINS_Team_Leader_Licenses__c from Opportunity 
-                                    where Account.Cloud_Invoice_To__c =: oppLst[0].Cloud_Account__r.WINS_Wholesaler_Number__c]) {
+            for(Opportunity oppRec : oppLst) {
+                if(oppRec.Account.Cloud_Invoice_To__c == cloudOpp.Cloud_Account__r.WINS_Wholesaler_Number__c) {
+                    oppCloudToLst.add(oppRec);
+                }
+            }
+            for(Opportunity opp : oppCloudToLst) {
                 if(wslr_totalVolume ==  null) wslr_totalVolume = 0;
                 wslr_totalVolume += opp.Cloud_Account__r.WINS_Total_Invoicing_Volume__c;
                 
@@ -212,29 +225,153 @@ public class AllInvoiceExcelReport {
             sg2Price = (sg2Price * 1.0192);//2014 increase Roundup
             sg2Price = (sg2Price * 1.017);//2015 increase Roundup
             sg2Price = (sg2Price * 1.013);  
-            if(oppLst[0].Service_Group__c == '2') {
+            if(cloudOpp.Service_Group__c == '2') {
                 InvoiceData inData1 = new InvoiceData(
-                    oppLst[0].Account.WINS_Wholesaler_Number__c, 1, 'MAN-MOB-SG2', sg2Price, sg2Price, 'SG2'
+                    cloudOpp.Account.WINS_Wholesaler_Number__c, 1, 'MAN-MOB-SG2', sg2Price, sg2Price, 'SG2'
                 );
-                resultData.add(inData1);
+                data.add(inData1);
             }
-            if(oppLst[0].Service_Group__c == '3') {
+            if(cloudOpp.Service_Group__c == '3') {
                 //for sg3
                 SG3_price = sg2Price * 1.25;
                 InvoiceData inData2 = new InvoiceData(
-                    oppLst[0].Account.WINS_Wholesaler_Number__c, 1, 'Retail Connect', SG3_price, SG3_price, 'SG3'
+                    cloudOpp.Account.WINS_Wholesaler_Number__c, 1, 'Retail Connect', SG3_price, SG3_price, 'SG3'
                 );
-                resultData.add(inData2);
-            }*/
+                data.add(inData2);
+            }
         }
+        return data;
     }
     //To handle SG1 Main Account
-    public static List<InvoiceData> handleSg1Acc(Opportunity opp) {
-        //Logic
+    public static List<InvoiceData> handleSg1Acc(Opportunity mainOpp) {
+        List<InvoiceData> data = new List<InvoiceData>();
+        if(mainOpp.Account.RSM__c) {
+            if(mainOpp.Account.RSM_INVOICE_VOLUME__c == null) mainOpp.Account.RSM_INVOICE_VOLUME__c = 0;
+            List<RSM__mdt> rsmLst = new List<RSM__mdt>();
+            for(RSM__mdt rsm : rsmAllLst) {
+                if(rsm.Tier__c >= mainOpp.Account.WINS_AB_Invoicing_Volume__c + mainOpp.Account.RSM_INVOICE_VOLUME__c) {
+                    rsmLst.add(rsm);
+                }
+            }
+            if(rsmLst != null && rsmLst.size() > 0) {
+                InvoiceData inData = new InvoiceData(
+                    mainOpp.Account.WINS_Wholesaler_Number__c, 1, 'RSM', rsmLst[0].Annual_Cost__c, rsmLst[0].Annual_Cost__c, 'RSM Single Location Business enitity'
+                );
+                data.add(inData);
+            }                
+        }
+        if(mainOpp.Account.E_commerce__c) {
+            if(mainOpp.Account.EC_INVOICE_VOLUME__c ==  null) mainOpp.Account.EC_INVOICE_VOLUME__c = 0;
+            List<Ecommerce__mdt> ecmLst = new List<Ecommerce__mdt>();
+            for(Ecommerce__mdt ecm : ecmAllLst) {
+                if(ecm.Tier__c >= mainOpp.Account.WINS_AB_Invoicing_Volume__c + mainOpp.Account.EC_INVOICE_VOLUME__c) {
+                    ecmLst.add(ecm);
+                }
+            }
+            if(ecmLst != null && ecmLst.size() > 0) {
+                InvoiceData inData = new InvoiceData(
+                    mainOpp.Account.WINS_Wholesaler_Number__c, 1, 'Ecommerce', ecmLst[0].Annual_Cost__c, ecmLst[0].Annual_Cost__c, 'EC Single Location Business enitity'
+                );
+                data.add(inData);
+            }
+        }
+        //Logic for MCS 
+        if(mainOpp.Account.MCS__c) {
+            
+            List<MCS__mdt> mcsLst = new List<MCS__mdt>();
+            for(MCS__mdt mcs : mcsAllLst) {
+                if(mcs.Tier__c >= mainOpp.Account.WINS_Total_Invoicing_Volume__c) {
+                    mcsLst.add(mcs);
+                }
+            }
+            if(mcsLst != null && mcsLst.size() > 0) {
+                Integer wslrsInTier = Integer.valueOf(mcsLst[0].Wslrs_in_Tier__c);
+                Decimal totalTierVol = mcsLst[0].Total_Tier_Volume__c;
+                Decimal fee_cloud1 = 0;
+                Decimal fee_cloud2 = 0;
+                Decimal fee_cloud3 = 0;
+                Decimal wslrCargeAboveBase = 0;
+                Decimal revenueNeedAboveBase = 0;
+                Decimal tierTotalBaseRevenue = 0;
+                Decimal wslrTierPercentage = 0;                                    
+                tierTotalBaseRevenue = wslrsInTier * mcsLst[0].Base_Price__c;
+                revenueNeedAboveBase = mcsLst[0].Revenue_Target__c - tierTotalBaseRevenue;                        
+                wslrTierPercentage = oppLst[0].Account.WINS_Total_Invoicing_Volume__c / totalTierVol;
+                wslrCargeAboveBase = revenueNeedAboveBase * wslrTierPercentage;
+                fee_cloud1 = ((mcsLst[0].Base_Price__c + wslrCargeAboveBase) * (1 + (1.92/100))).round(System.RoundingMode.CEILING);
+                fee_cloud2 = (fee_cloud1 * 12 * (1 + (1.70/100))).round(System.RoundingMode.CEILING);
+                //The final value
+                fee_cloud3 = (fee_cloud2 *(1 + (1.30/100))).round(System.RoundingMode.CEILING);
+                system.debug('mcsLst[0].Base_Price__c: '+mcsLst[0].Base_Price__c);
+                system.debug('mcsLst[0].Revenue_Target__c: '+mcsLst[0].Revenue_Target__c);
+                system.debug('wslrsInTier: '+wslrsInTier);
+                system.debug('totalTierVol: '+totalTierVol);
+                system.debug('mainOpp.Account.WINS_AB_Invoicing_Volume__c: '+mainOpp.Account.WINS_Total_Invoicing_Volume__c);
+                system.debug('tierTotalBaseRevenue: '+tierTotalBaseRevenue);
+                system.debug('revenueNeedAboveBase: '+revenueNeedAboveBase);
+                system.debug('wslrTierPercentage: '+wslrTierPercentage);
+                system.debug('wslrCargeAboveBase: '+wslrCargeAboveBase);
+                system.debug('fee_cloud1: '+fee_cloud1);
+                system.debug('fee_cloud1: '+fee_cloud2);
+                system.debug('fee_cloud3: '+fee_cloud3);
+                InvoiceData inData = new InvoiceData(
+                    mainOpp.Account.WINS_Wholesaler_Number__c, 1, 'AB-MCS', fee_cloud3, fee_cloud3, '1 Single Location Business enitity'
+                );
+                data.add(inData);
+            }
+        }
+        if(oppIdOliMap.containsKey(mainOpp.Id)) {
+            for(OpportunityLineItem oli : oppIdOliMap.get(mainOpp.Id)) {
+                InvoiceData inData = new InvoiceData(
+                    mainOpp.Account.WINS_Wholesaler_Number__c, oli.Quantity, oli.Product2.Name, oli.UnitPrice, oli.UnitPrice, oli.Description
+                );
+                data.add(inData);
+            }
+        }
+        return data;
     }
     //To handle SG2 and SG3 Main Account
-    public static List<InvoiceData> handleSg2N3Acc(Opportunity opp) {
-        //Logic
+    public static List<InvoiceData> handleSg2N3Acc(Opportunity mainOpp) {
+        List<InvoiceData> data = new List<InvoiceData>();
+         List<Opportunity> opp4UpdLst = new List<Opportunity>();
+        for(Opportunity oppRec : oppLst) {
+            if(mainOpp.Account.Cloud_Invoice_To__c == mainOpp.Account.WINS_Wholesaler_Number__c) {
+                opp4UpdLst.add(oppRec);
+            }
+        }
+        if(opp4UpdLst.size() > 0) {
+            system.debug('for sg2 or sg3');
+            Decimal wslr_totalVolume = 0;
+            Decimal wlsr_selling_licenses = 0;            
+            for(Opportunity opp : opp4UpdLst) {
+                if(wslr_totalVolume ==  null) wslr_totalVolume = 0;
+                wslr_totalVolume += opp.Account.WINS_Total_Invoicing_Volume__c;
+                
+                if(opp.Account.WINS_DriverSell_Licenses__c == null) opp.Account.WINS_DriverSell_Licenses__c = 0;
+                if(opp.Account.WINS_Presell_Licenses__c == null) opp.Account.WINS_Presell_Licenses__c = 0;
+                if(opp.Account.WINS_Team_Leader_Licenses__c == null) opp.Account.WINS_Team_Leader_Licenses__c = 0;
+                wlsr_selling_licenses += opp.Account.WINS_DriverSell_Licenses__c + opp.Account.WINS_Presell_Licenses__c + opp.Account.WINS_Team_Leader_Licenses__c;
+            }
+            
+            Decimal sg2Price = 0, SG3_price = 0;
+            sg2Price = (6525 + 0.5 * wslr_totalVolume/100 + -0.00000000005 * wslr_totalVolume * wslr_totalVolume + (wlsr_selling_licenses-(3.2482 + 0.000006* wslr_totalVolume))*341)*(1+0.23);
+            sg2Price = (sg2Price * 1.0192);//2014 increase Roundup
+            sg2Price = (sg2Price * 1.017);//2015 increase Roundup
+            sg2Price =  (sg2Price * 1.013);  
+            InvoiceData inData1 = new InvoiceData(
+                mainOpp.Account.WINS_Wholesaler_Number__c, 1, 'MAN-MOB-SG2', sg2Price, sg2Price, 'SG2'
+            );
+            data.add(inData1);
+            if(mainOpp.Service_Group__c == '3') {
+                //for sg3
+                SG3_price = sg2Price * 1.25;
+                InvoiceData inData2 = new InvoiceData(
+                    mainOpp.Account.WINS_Wholesaler_Number__c, 1, 'Retail Connect', SG3_price, SG3_price, 'SG3'
+                );
+                data.add(inData2);
+            }
+        }
+        return data;
     }
     public class InvoiceData {
         @AuraEnabled

@@ -71,3 +71,10 @@ LWC -
 
 * javaScript to HTML to reflect the value use @track 
 * HTML to javaScript to reflect the value use event handler
+
+--------- Example ----
+List of contacts ---> LWC
+    contact Detail --> LWC
+
+@wire
+@api
