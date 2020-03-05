@@ -1,5 +1,35 @@
 <template>
-    <template for:each={contactsLst.data} for:item=con>
-        {con.FirstName}
-    </template>
+    <template for:each={data} for:item=con for:index="index">
+        <div key={con.LastName} class="slds-p-top_xx-small">
+            <!--<c-contact contact-info={con}></c-contact>-->
+            <c-contact>
+                <lightning-layout>
+                    <lightning-layout-item padding="around-small">
+                        <div class="header-column">
+                            <p class="field-title" title="First Name">First Name</p>
+                            <p>{con.FirstName}</p>
+                        </div>                
+                    </lightning-layout-item>
+                    <lightning-layout-item padding="around-small">
+                        <div class="header-column">
+                            <p class="field-title" title="Last Name">Last Name</p>
+                            <p>{con.LastName}</p>
+                        </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item padding="around-small">
+                        <div class="header-column">
+                            <p class="field-title" title="Email">Email</p>
+                            <p>{con.Email}</p>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <div slot="firstSlot">
+                    I am firstSlot content from the Parent.
+                </div>
+                <div slot="secondSlot">
+                    I am secondSlot content from the Parent.
+                </div>
+            </c-contact>
+        </div>     
+    </template>    
 </template>

@@ -1,0 +1,27 @@
+<template>
+    <!--<lightning-card title={contactInfo.Name}>
+        <lightning-layout>
+            <lightning-layout-item padding="around-small">
+                <div class="header-column">
+                    <p class="field-title" title="First Name">First Name</p>
+                    <p>{contactInfo.FirstName}</p>
+                </div>                
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <div class="header-column">
+                    <p class="field-title" title="Last Name">Last Name</p>
+                    <p>{contactInfo.LastName}</p>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <div class="header-column">
+                    <p class="field-title" title="Email">Email</p>
+                    <p>{contactInfo.Email}</p>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>      
+    </lightning-card>-->  
+    <slot></slot>
+    <slot name="firstSlot"></slot>
+    <slot name="secondSlot"></slot>
+</template>
