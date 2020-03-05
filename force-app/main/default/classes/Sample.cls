@@ -66,36 +66,80 @@ public class AllInvoiceExcelReport {
                 resultData.addAll(processMainOppsData);
             }
         }
-        outputMap.put('data',resultData);
+        outputMap.put('data',resultData);        
         return outputMap;
     }
     public static List<InvoiceData> processCloudOpps(List<Opportunity> cloudOpps) {
         List<InvoiceData> data = new List<InvoiceData>();
         for(Opportunity cloudOpp : cloudOpps) {
+            List<InvoiceData> currentData = new List<InvoiceData>();
+            String item, description;
             if(cloudOpp.Service_Group__c == '1') {
-                data.addAll(handleSg1CloudAcc(cloudOpp));
+                item = 'MAN-MOB-SG1';
+                description = 'ALLCONNECT Service Group1';
+                currentData.addAll(handleSg1CloudAcc(cloudOpp));
             }
             else if(cloudOpp.Service_Group__c == '2' || cloudOpp.Service_Group__c == '3') {
+                if(mainOpp.Service_Group__c == '2') {
+                    item = 'MAN-MOB-SG2';
+                    description = 'ALLCONNECT Service Group2';
+                }
+                else {
+                    item = 'RETAIL CONNECT';
+                    description = 'RETAIL CONNECT';
+                }
                 List<InvoiceData> handleSg2N3CloudAccData = handleSg2N3CloudAcc(cloudOpp);
                 if(handleSg2N3CloudAccData != null && handleSg2N3CloudAccData.size() > 0) {
-                    data.addAll(handleSg2N3CloudAccData);
+                    currentData.addAll(handleSg2N3CloudAccData);
                 }
             }
-        }
+            Decimal finalUnitPrice = 0, finalExtendedPrice = 0;
+            for(InvoiceData row : currentData) {
+                finalUnitPrice += row.unitPrice;
+                finalExtendedPrice += row.extendedPrice;
+            }
+            data.add(
+                new InvoiceData(
+                    wslr, 1, item, finalUnitPrice, finalExtendedPrice, description
+                ) 
+            );
+        }        
         return data;
     }
     public static List<InvoiceData> processMainOpps(List<Opportunity> mainOpps) {
-        List<InvoiceData> data = new List<InvoiceData>();
+        List<InvoiceData> data = new List<InvoiceData>();        
         for(Opportunity mainOpp : mainOpps) {
+            List<InvoiceData> currentData = new List<InvoiceData>();
+            String item, description;
             if(mainOpp.Service_Group__c == '1') {
-                data.addAll(handleSg1Acc(mainOpp));
+                item = 'MAN-MOB-SG1';
+                description = 'ALLCONNECT Service Group1';
+                currentData.addAll(handleSg1Acc(mainOpp));
             }
             else if(mainOpp.Service_Group__c == '2' || mainOpp.Service_Group__c == '3') {
+                if(mainOpp.Service_Group__c == '2') {
+                    item = 'MAN-MOB-SG2';
+                    description = 'ALLCONNECT Service Group2';
+                }
+                else {
+                    item = 'RETAIL CONNECT';
+                    description = 'RETAIL CONNECT';
+                }
                 List<InvoiceData> handleSg2N3AccData = handleSg2N3Acc(mainOpp);
                 if(handleSg2N3AccData != null && handleSg2N3AccData.size() > 0) {
-                    data.addAll(handleSg2N3AccData);
+                    currentData.addAll(handleSg2N3AccData);
                 }
             }
+            Decimal finalUnitPrice = 0, finalExtendedPrice = 0;
+            for(InvoiceData row : currentData) {
+                finalUnitPrice += row.unitPrice;
+                finalExtendedPrice += row.extendedPrice;
+            }
+            data.add(
+                new InvoiceData(
+                    wslr, 1, item, finalUnitPrice, finalExtendedPrice, description
+                ) 
+            );
         }
         return data;
     }
