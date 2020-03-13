@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Contact Manager">
+        <lightning-layout>
+            <lightning-layout-item size="6" padding="around-small">
+                <lightning-card title="New Contact">
+                    <lightning-input name="First Name" label="First Name" value={firstName} onchange={firstNameChangeHandler}></lightning-input>
+                    <lightning-input name="Last Name" label="Last Name" value={lastName} onchange={lastNameChangeHandler}></lightning-input>
+                    <lightning-input name="Email" label="Email" value={email} onchange={emailChangeHandler}></lightning-input>
+                    <lightning-input name="Mobile" label="Mobile" value={mobile} type="phone" onchange={mobileChangeHandler}></lightning-input>
+                    <lightning-button variant="brand" label="Save" onclick={createContact} ></lightning-button>
+                </lightning-card>
+            </lightning-layout-item>
+            <lightning-layout-item size=6>
+                <lightning-card title="Contact Detail" padding="around-small">
+                    <lightning-input name="First Name" label="First Name" value={retFirstName} onchange={firstNameChangeHandler}></lightning-input>
+                </lightning-card>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

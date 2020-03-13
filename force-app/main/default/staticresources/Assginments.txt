@@ -78,3 +78,11 @@ List of contacts ---> LWC
 
 @wire
 @api
+
+
+<c-parent>
+    <c-child></c-child>
+</c-parent>
+
+<c-parent1></c-parent1>
+<c-parent2></c-parent2>

@@ -1,0 +1,15 @@
+<template>
+    <template if:true={isDisplay}>
+        I am the text in child component.
+    </template>
+    <div>
+        Sample text
+        <lightning-card>    
+        <lightning-checkbox-group name="cities"
+                                label="Cities"
+                                options={options}
+                                value={value}
+                                onchange={handleChange}></lightning-checkbox-group>
+        </lightning-card>
+    </div>
+</template>

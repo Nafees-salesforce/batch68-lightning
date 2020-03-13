@@ -1,0 +1,12 @@
+<template>
+    <!--<c-child is-display></c-child>-->
+    <!--<c-child onmychildevent={handleChildEvent}></c-child>-->
+    <c-child></c-child>
+    <lightning-card>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="City Name" value={value} onchange={onInput}></lightning-input>
+            <lightning-button variant="brand" label="Check City" title="Check City" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+
+        </div>
+    </lightning-card>
+</template>
