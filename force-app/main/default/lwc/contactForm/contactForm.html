@@ -10,9 +10,12 @@
                     <lightning-button variant="brand" label="Save" onclick={createContact} ></lightning-button>
                 </lightning-card>
             </lightning-layout-item>
-            <lightning-layout-item size=6>
-                <lightning-card title="Contact Detail" padding="around-small">
-                    <lightning-input name="First Name" label="First Name" value={retFirstName} onchange={firstNameChangeHandler}></lightning-input>
+            <lightning-layout-item size="6" padding="around-small">
+                <lightning-card title="Contact Detail">
+                    <p><lightning-formatted-text value={retFirstName}></lightning-formatted-text></p>
+                    <p><lightning-formatted-text value={retLastName}></lightning-formatted-text></p>
+                    <p><lightning-formatted-text value={retEmail}></lightning-formatted-text></p>
+                    <p><lightning-formatted-phone value={retMobile}></lightning-formatted-phone></p>
                 </lightning-card>
             </lightning-layout-item>
         </lightning-layout>

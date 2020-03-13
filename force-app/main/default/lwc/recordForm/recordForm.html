@@ -1,0 +1,7 @@
+<template>
+    <lightning-card title="Record Form Example">
+        <!-- Note: fields and layout-type= attributes should not be used together-->
+        <!--<lightning-record-form object-api-name="Contact" mode="edit" fields={fieldArray} columns="2" record-id={recordId} onsuccess={handleSuccess}></lightning-record-form>-->
+        <lightning-record-form object-api-name="Contact" mode="edit" layout-type="Full" columns="2" record-id={recordId} onsuccess={handleSuccess}></lightning-record-form>
+    </lightning-card>
+</template>

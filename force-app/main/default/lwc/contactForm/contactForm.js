@@ -51,7 +51,34 @@ export default class ContactForm extends LightningElement {
     get retFirstName() {
         debugger;
         console.log('contact: '+JSON.stringify(this.contact));
-        return 'Contact View Form .....';
+        if(this.contact.data) {
+            return this.contact.data.fields.FirstName.value;
+        }
+        return undefined;
+    }
+
+    get retLastName() {
+        debugger;
+        if(this.contact.data) {
+            return this.contact.data.fields.LastName.value;
+        }
+        return undefined;
+    }
+
+    get retEmail() {
+        debugger;
+        if(this.contact.data) {
+            return this.contact.data.fields.Email.value;
+        }
+        return undefined;
+    }
+
+    get retMobile() {
+        debugger;
+        if(this.contact.data) {
+            return this.contact.data.fields.MobilePhone.value;
+        }
+        return undefined;
     }
     
     
