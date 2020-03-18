@@ -15,7 +15,7 @@ export default class ApexCallwithWireService extends LightningElement {
     accounts({data,error}) {
         if(data) {
             //console.log('Data Result: '+JSON.stringify(data));
-            console.log(`Data Result: $JSON.stringify(data)`);
+            console.log(`Data Result: ${JSON.stringify(data)}`);
             this.data = data;
         }
     }
